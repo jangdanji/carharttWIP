@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+    <!-- style -->
+    <link rel="stylesheet" href="./css/style.scss">
+
+    <!-- script -->
+    <script type="module" src="./js/member_findAccount.js"></script>
+    
+</head>
+<script type="module">
+
+</script>
+<body>
+    <div class="container finder">
+        <div class="logo">
+            <img src="./img/logo_black.png" alt="">
+        </div>
+        <p class="title">아이디/비밀번호 찾기</p>
+        <div class="inputBox">
+            <label for="idBox" class="inputID box" id="inputText">
+                <span class="inputTitle">아이디</span><span class="textAlert"></span>
+                <input type="text" class="idBox" id="idBox" placeholder="" maxlength="16">
+            </label>
+            <label for="telBox" class="inputTel box" id="inputText">
+                <span class="inputTitle">전화번호</span><span class="textAlert"></span>
+                <div class="telBoxWrap">
+                    <select class="telBox">
+                        <option value="010">010</option>
+                        <option value="010">011</option>
+                    </select>
+                    <input type="text" class="telBox" id="telBox1" maxlength="4">
+                    <input type="text" class="telBox" id="telBox2" maxlength="4">
+                </div>
+            </label>
+        </div>
+        <button type="button" class="commitBtn">인증번호 발송</button>
+
+        <ul class="bottomMenu">
+            <li><a href="./login.html">로그인</a></li>
+            <li><a href="./signup.html">회원가입</a></li>
+        </ul>
+    </div>
+</body>
+</html>

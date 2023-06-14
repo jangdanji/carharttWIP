@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/style.scss">
+
+    <!-- 스크립트 -->
+    <script src="./js/sub_page.js" defer></script>
+    <script src="./js/sub_page_import.js" type="module" defer></script>
+    <script src="./js/common.js" defer></script>
+
+    
+    
+
+    
+
+</head>
+<body>
+    <include src="./parts/header.html"></include>
+
+    <a href="./detail.html"></a> <!-- 디테일 페이지로 가는 경로가 html에는 없음 (js로 처리함..) 이거 안해주면 npm run dev할때 디테일 페이지 생략됨 -->
+
+    <div class="sub-page-container">
+
+        <div class="visual-banner">
+            <div class="wrap">
+                <div class="banner">
+                    <img src="./img/sub_page_banner.png" alt="">
+                </div>
+                <div class="banner-text">
+                    <p class="category">TOP</p>
+                    <p class="category-detail">봄에 어울리는 다양한 패턴과 소재로 제작된 상의, 이번 시즌에는 놓치지 마세요!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="products">
+            <div class="wrap">
+                <div class="side-filter">
+                    <div class="filter-category">
+                        <h2 class="">TOP</h2>
+                        <span class="filter-reset"><i class="fas fa-redo"></i> 전체 해제</span>
+                    </div>
+                    
+                    <div class="filter filter-clothes">
+                        <label for="jacket"><input type="checkbox" id="jacket" name="clothes" data="jacket"><span></span> 자켓</label>
+                        <label for="sweater"><input type="checkbox" id="sweater" name="clothes" data="sweat"><span></span> 스웨터</label>
+                        <label for="neat"><input type="checkbox" id="neat" name="clothes" data="neat"><span></span> 니트</label>
+                        <label for="shirt"><input type="checkbox" id="shirt" name="clothes" data="shirt"><span></span> 셔츠</label>
+                        <label for="tshirt"><input type="checkbox" id="tshirt" name="clothes" data="tshirt"><span></span> 티셔츠</label>
+                    </div>
+                    <div class="filter filter-price">
+                        <h3>가격</h3>
+                        <label for="price-sort-1"><input type="checkbox" id="price-sort-1" name="price-sort" data="0"><span></span> 0원 ~ 50,000원</label>
+                        <label for="price-sort-2"><input type="checkbox" id="price-sort-2" name="price-sort" data="1"><span></span> 50,000원 ~ 150,000원</label>
+                        <label for="price-sort-3"><input type="checkbox" id="price-sort-3" name="price-sort" data="2"><span></span> 150,000원 ~ 250,000원</label>
+                        <label for="price-sort-4"><input type="checkbox" id="price-sort-4" name="price-sort" data="3"><span></span> 250,000원 ~ 500,000원</label>
+                        <label for="price-sort-5"><input type="checkbox" id="price-sort-5" name="price-sort" data="4"><span></span> 500,000원 ~</label>
+                    </div>
+                    <div class="filter filter-color">
+                        <h3>색상</h3>
+                        <label id="color-black"><input type="checkbox" id="filter-black" data="black"><i class="fas fa-check"></i></label>
+                        <label id="color-white"><input type="checkbox" id="filter-white" data="white"><i class="fas fa-check"></i></label>
+                        <label id="color-gray"><input type="checkbox" id="filter-gray" data="gray"><i class="fas fa-check"></i></label>
+                        <label id="color-red"><input type="checkbox" id="filter-red" data="red"><i class="fas fa-check"></i></label>
+                        <label id="color-yellow"><input type="checkbox" id="filter-yellow" data="yellow"><i class="fas fa-check"></i></label>
+                        <label id="color-green"><input type="checkbox" id="filter-green" data="green"><i class="fas fa-check"></i></label>
+                        <label id="color-blue"><input type="checkbox" id="filter-blue" data="blue"><i class="fas fa-check"></i></label>
+                        <label id="color-purple"><input type="checkbox" id="filter-purple" data="purple"><i class="fas fa-check"></i></label>
+                    </div>
+                    <div class="filter filter-discount">
+                        <h3>할인율</h3>
+                        <label for="discount-1"><span></span> 0% ~ 30%</label>
+                        <label for="discount-2"><span></span> 30% ~ 50%</label>
+                        <label for="discount-3"><span></span> 50% ~ 70%</label>
+                        <label for="discount-4"><span></span> 70% 이상</label>
+                    </div>
+                </div>
+
+
+
+                <div class="product-list">
+                    <div class="sub-filter">
+                        <!-- <label for="soldout">품절상품 제외 <input type="checkbox" id="soldout"></label> -->
+                        <select name="sort" id="productSelector">
+                            <option value="newest">최신순</option>
+                            <option value="hot">인기순</option>
+                            <option value="price-low">가격 낮은 순</option>
+                            <option value="price-high">가격 높은 순</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <include src="./parts/footer.html"></include>
+
+    
+</body>
+</html>

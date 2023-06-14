@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+    <!-- user -->
+    <script src="./js/detail_check.js" type="module" defer></script>
+    <script src="./js/detail_size_finder.js" defer></script>
+    <script src="./js/detail_page.js" defer></script>
+    <script src="./js/common.js" defer></script>
+
+    <!-- <link rel="stylesheet" href="./css/style.css"> -->
+    <link rel="stylesheet" href="./css/style.scss">
+</head>
+<body>
+
+    <include src="./parts/header.html"></include>
+
+    <div class="detail-container">
+        <div class="wrap">
+            <div class="detail-view">
+                <p class="style-code">스타일코드 <b>CA23SSSWCR00358001</b></p>
+                <div class="img-thumb">
+                    <img src="./img/detail_01_black.jpg" alt="thumb-image">
+                </div>
+                <div class="img-small">
+                    <div><img src="./img/detail_01_black.jpg" alt="small-image"></div>
+                    <div><img src="./img/detail_02_black.jpg" alt="small-image"></div>
+                    <div><img src="./img/detail_03_black.jpg" alt="small-image"></div>
+                    <div><img src="./img/detail_04_black.jpg" alt="small-image"></div>
+                    <div><img src="./img/detail_05_black.jpg" alt="small-image"></div>
+                </div>
+            </div>
+            <div class="detail-info">
+                <h1>로커 스웻셔츠 블랙/화이트</h1>
+                <div class="status">
+                    <span>BEST</span>
+                    <span>NEW</span>
+                </div>
+                <div class="menu">
+                    <div class="rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0/5
+                    </div>
+                    <div class="likeAndShare">
+                        <i class="far fa-heart"></i><i class="fab fa-facebook-f"></i><i class="fab fa-twitter"></i>
+                    </div>
+                </div>
+                <div class="price">
+                    <span>₩ 138,000</span> <span>적립 &#8361; 690 (0.5%)</span>
+                </div>
+                <div class="notice">
+                    <p>10만원 이하 3,000원, 10만원 이상 무료배송</p>
+                    <p>2시 이전 주문시 내일(수) 도착 예정 | 대한통운</p>
+                    <p>무이자할부 최대 6개월 (단, 일시불 할인 및 법인 카드 사용 불가)</p>
+                </div>
+                <div class="color">
+                    <p>색상</p>
+                    <div for="colorBtn1" data-color="black"><img src="./img/detail_04_black.jpg" alt=""></div>
+                    <div for="colorBtn2" data-color="white"><img src="./img/detail_04_white.jpg" alt=""></div>
+                    <div for="colorBtn3" data-color="green"><img src="./img/detail_04_green.jpg" alt=""></div>
+                </div>
+                <div class="size">
+                    <p>사이즈</p>
+                    <div for="sizeBtn1">XS</div>
+                    <div for="sizeBtn2">S</div>
+                    <div for="sizeBtn3">M</div>
+                    <div for="sizeBtn4">L</div>
+                    <div for="sizeBtn5">XL</div>
+                </div>
+                <div class="benefit">
+                    <div><img src="./img/naverPay.png" alt="naver-pay">네이버페이 포인트 혜택</div>
+                    <div>최대 3% 적립</div>
+                </div>
+                <div class="size-finder">
+                    <i class="fas fa-tshirt"></i> 고객님 사이즈를 찾아보세요!
+                </div>
+                <div class="submit-btn">
+                    <div class="cart">장바구니</div>
+                    <div class="buy">구매하기</div>
+                </div>
+            </div>
+            <div class="another-products">
+                <div class="worn">
+                    <p class="title">함께 착용한 상품</p>
+                    <div class="worn-product">
+                        <div><img src="./img/detail_together.jpg" alt=""></div>
+                        <p class="name">로튼 팬츠 베스탈 월</p>
+                        <p class="price">₩ 165,000</p>
+                    </div>
+                </div>
+                <div class="viewed">
+                    <p class="title">최근 본 상품</p>
+                    <div class="worn-product">
+                        <div><img src="./img/recently_01.jpg" alt=""></div>
+                        <p class="name">코스탈 팬츠 블랙/화이트</p>
+                        <p class="price">₩ 173,000</p>
+                    </div>
+                    <div class="worn-product">
+                        <div><img src="./img/recently_02.jpg" alt=""></div>
+                        <p class="name">코스탈 자켓 블랙/화이트</p>
+                        <p class="price">₩ 248,000</p>
+                    </div>
+                    <div class="worn-product">
+                        <div><img src="./img/recently_03.jpg" alt=""></div>
+                        <p class="name">살레도 자켓 블랙 라이트 유즈드 워시</p>
+                        <p class="price">₩ 245,000</p>
+                    </div>
+                    <div class="worn-product">
+                        <div><img src="./img/recently_04.jpg" alt=""></div>
+                        <p class="name">리들리 데이팩 블랙</p>
+                        <p class="price">₩ 82,400</p>
+                    </div>
+                </div>
+            </div>
+            <div class="for-customers">
+                <div class="category-bar bar1">
+                    <div>상세정보</div><div>상품후기</div><div>상품문의</div><div>배송안내</div><div>안내사항</div>
+                </div>
+                <div class="detail">
+                    <p>LOCKER SWEATSHIRT는 면 80%, 폴리에스테르 20% 소재의 스웻셔츠입니다. 루즈 핏이며, 안감 기모가 있는 제품입니다. 정면에 그래픽 자수와 패치가 부착되어 있습니다.</p>
+                    
+                    <img src="./img/detailView_02.jpg" alt="">
+                    <img src="./img/detailView_01.jpg" alt="">
+                </div>
+                <div class="category-bar bar2">
+                    <div>상세정보</div><div>상품후기</div><div>상품문의</div><div>배송안내</div><div>안내사항</div>
+                </div>
+                <div class="product-reviews">
+                    <p><span></span><span>Best 후기 게시판 ></span></p>
+                    <div class="reviews-wrap">
+                        <div class="review">
+                            <span>봄에 입기 딱 좋아요! 핏도 너무 오버하지않고 딱 떨어져서 좋아요</span>
+                            <div class="star-point"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="review-date">2023-01-01</div>
+                            <div class="review-id">ju****</div>
+                        </div>
+                        <div class="review">
+                            <span>너무 부담스럽지 않고 편하게 입고나가도 좋네요 </span>
+                            <div class="star-point"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="review-date">2023-01-23</div>
+                            <div class="review-id">sq****</div>
+                        </div>
+                        <div class="review">
+                            <span>색감이 화사하고 가볍고 요즘 날씨에 입기에 잘 맞네요 꾸안꾸룩에 최고입니다</span>
+                            <div class="star-point"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="review-date">2023-02-24</div>
+                            <div class="review-uesr">dy****</div>
+                        </div>
+                    </div>
+                    <div class="btn-review-write">
+                        <p>리뷰 작성하기 ></p>
+                    </div>
+                    <div class="review-write">
+                        <p>리뷰 작성하기<span><i class="fa-star far"></i><i class="fa-star far"></i><i class="fa-star far"></i><i class="fa-star far"></i><i class="fa-star far"></i></i></span></p>
+                        <input type="text">
+                        <div class="review-submit">작성하기</div>
+
+                    </div>
+                </div>
+                <div class="category-bar bar3">
+                    <div>상세정보</div><div>상품후기</div><div>상품문의</div><div>배송안내</div><div>안내사항</div>
+                </div>
+                <div class="qna">
+                    <div class="qna-header">
+                        <p>제품에 관한 궁금한 점을 올리시면 신속한 답변을 드립니다.</p>
+                        <p>배송,결제,교환/반품 등에 대한 문의는 <span>고객센터 > 이메일상담</span>을 이용해주세요.</p>
+                        <div class="btn-question">문의하기</div>
+                        <div class="question-write">
+                            <h2>문의하기</h2>
+                            <label class="private-check"><input type="checkbox"> 비공개로 문의하기</label>
+                            <input type="textarea" class="answer">
+                            <div class="question-submit">문의하기</div>
+                        </div>
+                    </div>
+                    <div class="qna-board">
+                        <p></p>
+                        <div class="qna-board-wrap">
+                            <div class="qna-post">
+                                <p class="status">미처리</p>
+                                <p class="title">제품에 문제가 있어서 교환하고싶은데 <i class="fas fa-lock"></i></p>
+                                <p class="date">2022-11-21</p>
+                                <p class="user">ha****</p>
+                            </div>
+                            <div class="answer pending">
+
+                                <b><i class="fas fa-sort-down"></i> [CARHARTT] 관리자</b>
+                                <p>
+                                    <span></span>
+                                </p>
+                                <div class="input-answer">
+                                    <input type="text"></textarea>
+                                    <div class="answer-submit">답변하기</div>
+                                </div>
+                                
+
+
+                            </div>
+                            <div class="qna-post">
+                                <p class="status">답변완료</p>
+                                <p class="title">다른 색깔은 없나요 <i class="fas fa-lock"></i></p>
+                                <p class="date">2022-11-11</p>
+                                <p class="user">dr****</p>
+                            </div>
+                            <div class="answer">
+                                <b><i class="fas fa-sort-down"></i> [CARHARTT] 관리자</b>
+                                <p>
+                                    <span>자세한 문의는 고객센터에 문의해 주시면 친절하게 상담해드리겠습니다.<br>
+                                        오늘도 칼하트를 이용해 주셔서 감사하며 즐거운 쇼핑되세요!</span>
+                                    
+                                </p>
+                                <div class="input-answer">
+                                    <input type="text"></textarea>
+                                    <div class="answer-submit">답변하기</div>
+                                </div>
+
+                            </div>
+                            <div class="qna-post">
+                                <p class="status">답변완료</p>
+                                <p class="title">배송은 얼마나 걸리나요??</p>
+                                <p class="date">2022-10-21</p>
+                                <p class="user">qq****</p>
+                            </div>
+                            <div class="answer">
+                                <b><i class="fas fa-sort-down"></i> [CARHARTT] 관리자</b>
+                                <p>
+                                    <span>자세한 문의는 고객센터에 문의해 주시면 친절하게 상담해드리겠습니다.<br>
+                                        오늘도 칼하트를 이용해 주셔서 감사하며 즐거운 쇼핑되세요!</span>
+                                </p>
+                                <div class="input-answer">
+                                    <input type="text"></textarea>
+                                    <div class="answer-submit">답변하기</div>
+                                </div>
+
+                            </div>
+                            <div class="qna-post">
+                                <p class="status">답변완료</p>
+                                <p class="title">사이즈 문의 <i class="fas fa-lock"></i></p>
+                                <p class="date">2022-10-11</p>
+                                <p class="user">sk****</p>
+                            </div>
+                            <div class="answer">
+                                <b><i class="fas fa-sort-down"></i> [CARHARTT] 관리자</b>
+                                <p>
+                                    <span>자세한 문의는 고객센터에 문의해 주시면 친절하게 상담해드리겠습니다.<br>
+                                        오늘도 칼하트를 이용해 주셔서 감사하며 즐거운 쇼핑되세요!</span>
+                                </p>
+                                <div class="input-answer">
+                                    <input type="text"></textarea>
+                                    <div class="answer-submit">답변하기</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-bar bar4">
+                    <div>상세정보</div><div>상품후기</div><div>상품문의</div><div>배송안내</div><div>안내사항</div>
+                </div>
+                <div class="delivery">
+                총 구매금액이 10만원 미만일 경우 배송비 3,000원이 부과 되며 총 구매금액이 10만원 이상일 경우 무료로 배송이 됩니다.<br>
+                구매 시 평일 오후 2시 이전에 결제 완료된 주문에 한해 당일 출고됩니다.<br>
+                *물류량이 많을 시 당일 출고가 불가할 수 있으며 출고가 지연될 수 있는 점 양해 부탁드립니다.<br>
+                <br>
+                1. 배송 회사 (* CJ 대한통운 1588-1255) <br>
+                → 퀵 배송과 직접 방문 수령은 업체 사정에 의해 불가능합니다.<br>
+                → 다수 상품 주문 시 출고 되는 물류 센터가 다를 수 있습니다.<br>
+                <br>
+                2. 배송 조회 <br>
+                → 마이페이지 혹은 택배사에서 발송 되는 문자를 통해 조회가 가능합니다.<br>
+                → 다수 상품 주문 시 출고 되는 물류 센터가 다를 수 있으며 한 주문건에 복수의 송장 번호가 발생 할 수 있습니다.<br>
+                <br>
+                3. 배송 기간<br>
+                → 평일 오후 2시 이전 결제 완료 된 주문건은 당일 출고되며 배송은 1~3일 정도 소요됩니다.<br>
+                → 물류량이 많을 시 배송이 지연되는 점 양해 부탁드립니다.<br>
+                → 상품준비 도중 시스템 오류나 제품상 문제로 상품의 발송이 늦어지거나 품절이 될 수 있습니다.<br>
+                → 휴일(주말/공휴일 포함) 주문건은 다음 영업일에 상품준비 후 발송됩니다.<br>
+                </div>
+                <div class="category-bar bar5">
+                    <div>상세정보</div><div>상품후기</div><div>상품문의</div><div>배송안내</div><div>안내사항</div>
+                </div>
+                <div class="guide">
+                    
+
+<p>> 반품안내</p>
+<pre>
+● 교환/환불 규정
+
+* 상품 수령 시 상품 관리 부주의로 인하여 판매 가치가 훼손 된 상품은 교환 및 환불이 불가능합니다.
+* 상품 수령 시 반드시 상품의 하자 여부를 확인 부탁드립니다. 
+* 상품 하자 여부의 확인이 없이 반품 된 제품은 고객님의 책임 사유가 될 수 있습니다.
+* 착용한 흔적이 있는 제품의 경우 교환 및 환불은 불가하며 공정거래위원회 고시 소비자분쟁해결기준에 의거 A/S로 진행될 수 있습니다.
+
+1. 교환/환불의 경우 모든 상품은 상품을 공급받으신 날로부터 7일 이내 교환/환불 신청을 해주셔야 가능합니다. 
+2. 교환/환불 신청 시 반품비는 선 결제로 진행되며 환불이 필요한 반품비의 경우 고객님의 계좌로 환불 됩니다.
+3. 교환의 경우 동일한 제품 사이즈 교환만 가능합니다.
+4. 교환/반품/불량/오배송은 재고 소진 시 반품으로만 진행 가능한 점 양해 부탁드립니다.
+5. 상품을 미 사용한 상태에서 택을 제거하지 않고 반송 하여 주십시오.
+6. 본사에 반송 된 상품의 입고 여부가 확인된 후에 검수를 거쳐 환불하여 드립니다.
+7. 고객님의 단순 변심으로 인한 상품의 교환/반품을 요청하시는 경우, 택배비용은 고객님 부담이오니 이점 양해 바랍니다.
+8. 공급 받은 상품 내용이 다르게 이행된 경우 (상품불량 등), 공급 받은 날로부터 3개월 이내 
+    그 사실을 알게 된 날 또는 알 수 있었던 날로부터 30일 이내에 교환/반품 신청이 가능합니다.
+9. 전자상거래 등에서의 소비자보호에 관한 법률 제17조 (청약철회 등) 에 의거 상품의 반품이 불가능한 경우 교환 및 반품이 되지 않습니다.
+  (a) 고객님의 책임 있는 사유로 상품 등이 멸실 또는 훼손된 경우. (단, 상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외)
+  (b) 포장을 개봉하였거나 포장이 훼손되어 상품가치가 현저히 상실된 경우
+  (c) 모든 상품의 택, 상품스티커, 비닐포장, 상품케이스(정품박스) 등을 훼손 및 멸실한 경우
+  (d) 시간의 경과에 의하여 재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한 경우
+  (e) 구매하신 상품의 구성(사은)품이 누락된 경우 (단, 그 구성품이 훼손 없이 회수가 가능한 경우 제외)
+  (f) 구매 이후 세탁 및 수선으로 인하여 상품이 훼손 된 경우
+
+
+● 신청 방법
+
+ * 교환/환불 신청 시 빠른 시일내로 택배 기사님이 방문 하실 예정입니다. 필요 시 기사님께서 직접 고객님께 연락을 드릴 수 있습니다. 
+(1) 회원 구매: 로그인 > 마이페이지 > 전체 주문 내역 > 주문번호  > 상품 체크 후 교환/환불 신청 > 반품비 결제
+(2) 비회원 구매: 로그인 > 비회원 주문조회 > 전체 주문내역 > 주문번호 > 상품 체크 후 교환/환불 신청 > 반품비 결제
+
+
+● 환불 소요 기간
+
+ * 반품 상품이 본사에 입고되면 상품 검수 후 이상이 없는 경우에만 교환/환불이 진행됩니다. (토,일,공휴일은 제외)
+1. 실시간 계좌 이체: 은행 영업 일에 따라 약 3~5일 후 해당 계좌로 입금됩니다.
+2. 신용카드: 카드사 및 은행사 사정에 따라 취소 기간이 3~5일 정도 소요됩니다.
+3. 적립금: 주문 시 사용하신 적립금은 환불 즉시 돌려드립니다.
+
+</pre>
+
+<p>> AS 안내</p>
+
+<pre>
+칼하트윕 및 칼하트윕 정식 판매처를 통하여 구입한 모든 제품은 A/S를 받으실 수 있습니다.  
+단, 품목에 따라 유상 수리비가 발생할 수 있으며, 일부 제품은 부품 수급의 어려움으로 서비스가 제한될 수 있습니다. 
+
+● 접수 방법 및 절차
+   ※ A/S 접수 시 반드 시 구매 내역이 확인 가능한 증빙 자료가 필요합니다.(영수증, 결제 내역 등)
+   ※ 정식 판매처를 통한 접수는 해당 구입처로 접수를 하셔야 합니다.
+
+     1. 접수
+     → 매장 방문 접수: 구입 매장 혹은 가까운 매장에 방문하여 의뢰/접수
+     → 본사 고객센터 접수: 구입처로 방문하기 어려운 경우는 고객센터(02-541-0854)로 직접 상담/접수
+    ※ 택배 비용은 수선 접수 시 선불로 소비자가 부담하며, 수리 후 사측에서 선불로 배송합니다.
+
+     2. 절차
+       매장/본사 제품 의뢰 → 본사 A/S 담당 부서 제품 확인 → A/S 진행
+        → A/S 완료 (※ A/S 비용은 AS 완료 후 고객님께 전달) → 매장 수령 / 택배 발송 
+
+
+● 심의 및 비용
+심의는 칼하트윕 본사에서 진행 되며 제품 상태, 사용 경과 일수, 품질보증기간, 고객 과실 여부 및 제품 하자 여부에 따라 심의 결과가 결정됩니다. 
+심의 결과에 따라 A/S 비용이 발생 될 수 있으며, A/S가 불가능 할 경우 제품이 반송 될 수 있습니다. 
+(※ 본사 심의의 불만 혹은 불편 사항이 있으실 경우에는 소비자 분쟁 해결 기준 및 분쟁 해결 기관을 통하여 재 심의가 가능하며 모든 절차 및 진행 사항을 분쟁 해결 기준법에 의거하여 투명하고 공정하게 진행합니다.)
+
+
+● 기간
+일반적인 A/S 서비스 기간은 접수 후 7~10일 정도 (평일 기준) 소요됩니다.  
+단, 부자재 수급 및 기타 사유로 지연될 수 있으며 이에 대한 안내는 사전에 고객님께 전달 드릴 예정입니다.
+
+
+● 불가 항목
+아래 항목의 경우 A/S가 불가능 하오니, 고객님의 양해 부탁드립니다.
+
+1. 고객님께서 임의로 사설업체를 통하거나, 따로 수선을 진행 하셨을 경우 해당 부분에 있어 추가 A/S는 진행이 불가하므로 반드시 본사의 심의를 통한 A/S 진행을 부탁드립니다.
+2. 전체 사이즈 수선, 바지통 줄임, 무리한 사이즈 수선: 수선 후 형태 변형, 불편함, 차이 발생 이유로 A/S 불가
+3. 시보리 교체 (목/손목)
+4. 원단 염색
+5. 짜깁기
+6. 장식, 부자재: 유사 스타일 대체 (장식, 벨트 불가)
+7. 판갈이/원판 교체 및 기타 부자재 수급 불가 시 A/S 불가
+8. 디자인 변경, 오염 제거, 세탁: 형태 변형 및 파손 우려
+9. 제품 프린팅 복원
+10. 재킷류 속 충전
+11. 제품의 심각한 손상이 있을 경우
+12. 난로,담뱃불등에 의한 제품 열손상
+13. 기타: 본사 심의 후 A/S가 불가능한 경우
+</pre>
+
+<p>> 세탁 및 취급 시 주의 사항</p>
+
+<pre>
+* 제품 혼용율에 따라 세탁 및 취급 유의 사항이 변경될 수 있으므로 반드시 부착되어 있는 케어라벨 내용을 확인하신 후 세탁하시기 바랍니다. 세탁 과실로 인하여 상품의 변형,이염,오염 등으로 상품에 문제가 발생 시에는 관련법 및 소비자 분쟁 해결 기준에 따라 심의가 진행 되며 특별한 경우에는 소비자 보호원을 통한 심사를 진행 할 수 있습니다. 따라서 세탁시에는 반드시 아래 내용을 참고 부탁 드립니다.
+
+의류
+
+- 면 류의 제품은 부분 세탁을 할 경우, 마찰이 발생하여 색 빠짐 현상이 있을 수 있으니 이 점 유의 바랍니다.
+- 땀을 많이 흘렸을 경우 즉시 세탁 하십시오.
+- 세탁시 뜨거운 물은 피하며, 손세탁 또는 기계세탁시 단일 세탁 후, 탈수 시간을 짧게 하여 주십시오.
+- 흰옷과 유색옷은 이염될수 있으므로 반드시 구분하여 세탁 하십시오.
+- 프린팅이 들어간 제품은 프린팅에 손상이 가지 않도록 뒤집어 세탁 하십시오.
+- 염소 표백제 및 강력효소제는 절대 사용하지 마십시오.
+- 세제를 먼저 물에 풀어 충분히 용해시킨후 세탁하십시오.
+- 면이 함유된 제품은 세탁후 약간의 수축현상이 생길수있으니 유의 바랍니다.
+- 물에 오래 담가 두거나, 세탁후 그대로 놓아두면 탈색이나 이염이 될수있으니 세탁 후 바로 탈수를 하여 주십시오.
+- 울 제품의 경우 물세탁을 삼가하며 반드시 드라이크리닝을 하십시오.
+- 지퍼나 단추가 있는 제품의 경우 잠근 상태에서 세탁 하십시오.
+
+
+*가먼트 다이(garment dye)의 경우, 완성된 제품에 추가로 염색을 진행하는 공법을 의미하며, 착용하면서 발생하는 자연스러운 물 빠짐이 있습니다.
+이로 인한 제품 교환, 환불은 불가하며, 오염이 발생했을 경우 부분 세탁이 아닌 전체 세탁으로 진행 부탁드리며, 흰옷이나 밝은 계열의 옷과 착용 시 이염이 발생할 수 있으니, 세탁 후 착용 바랍니다.
+
+신발
+
+*신발 제품의 경우 착화 시 반드시 실내에서 신어보아야 하며, 발등 주름 및, 뒤꿈치 구김, 창 바닥이 손상이 될 경우 교환, 환불의 사유가 될 수 없는 점 참고 바랍니다.
+
+- 건조시킬 때에는 햇볕이 잘 들지 않는 그늘진 곳에서 말려주십시오.
+- 기름기가 있는 장소에서의 사용은 피하십시오.
+- 표면의 오염 발생시 비눗물을 적신 천으로 오염 부분을 닦아주시고, 구두약, 신발 보호제를 사용하지 마십시오.
+- 세탁시 가급적 세탁 전문 업체에 문의 하십시오.
+- 신발 뒷꿈치를 꺾어 신지 마십시오.
+
+가죽
+
+- 젖었을 경우 직사일광이나 열로 건조시키지 마십시오.
+- 오염시 부드러운 솔로 닦고 가죽 전문 크리너를 사용 하십시오.
+- 보존시 적정한 온도와 습도에서 보관하십시오.
+- 세탁시 가죽 전문 세탁 업체에 문의 바랍니다.
+- 불꽃 접근시 불길이 옮겨 붙을 가능성이 있으니 취급에 주의하여 주십시오.
+</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <include src="./parts/footer.html"></include>
+
+    <div class="full-screen-modal">
+        <div class="size-finder-modal">
+            <h2 class="title">FIT SIZE CHECK</h2>
+            <div class="your-data">
+                <div class="your-height">
+                    <p>키<span>cm</span></p>
+                    <input type="number" maxlength="3">
+                </div>
+                <div class="your-weight">
+                    <p>몸무게<span>kg</span></p>
+                    <input type="number" maxlength="3">
+                </div>
+            </div>
+            <div class="check-btn">
+                사이즈 찾기
+            </div>
+            <div class="my-size">
+                <p class="title">My Size</p>
+                <p class="size-result">?</p>
+                <p class="description">비슷한 체형을 가진 사람들이 구매한 사이즈와<br>
+                    사이즈 피드백 데이터를 분석한 결과입니다.</p>
+            </div>
+            <p class="exit">닫기</p>
+        </div>
+        
+    </div>
+</body>
+</html>
