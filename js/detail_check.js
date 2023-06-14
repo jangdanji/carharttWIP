@@ -54,3 +54,6 @@ thumbnailSmall.forEach((img) => {
         thumbnail.setAttribute('src', img.getAttribute('src'))
     })
 })
+
+/* 맨 처음꺼 클릭 */
+sortColor[0].click()

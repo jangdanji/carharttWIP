@@ -1,151 +1,151 @@
 const imgData = [
     {
         name: 'visual',
-        src: ['../img/visual_01.jpg'],
+        src: ['./img/visual_01.jpg'],
     },
     {
         name: 'visual',
-        src: ['../img/visual_02.jpg'],
+        src: ['./img/visual_02.jpg'],
     },
     {
         name: 'visual',
-        src: ['../img/visual_03.jpg'],
+        src: ['./img/visual_03.jpg'],
     },
     {
         name: 'best',
-        src: ['../img/best_01-1.jpg', '../img/best_01-2.jpg'],
+        src: ['./img/best_01-1.jpg', './img/best_01-2.jpg'],
         productKR : 'S/S LIFEGUARDS T-SHIRT'
     },
     {
         name: 'best',
-        src: ['../img/best_02-1.jpg', '../img/best_02-2.jpg'],
+        src: ['./img/best_02-1.jpg', './img/best_02-2.jpg'],
         productKR : 'S/S REYES SHIRT'
     },
     {
         name: 'best',
-        src: ['../img/best_03-1.jpg', '../img/best_03-2.jpg'],
+        src: ['./img/best_03-1.jpg', './img/best_03-2.jpg'],
         productKR : 'S/S BOOGIE T-SHIRT'
     },
     {
         name: 'best',
-        src: ['../img/best_04-1.jpg', '../img/best_04-2.jpg'],
+        src: ['./img/best_04-1.jpg', './img/best_04-2.jpg'],
         productKR : 'S/S NEW FRONTIER T-SHIRT'
     },
     {
         name: 'best',
-        src: ['../img/best_05-1.jpg', '../img/best_05-2.jpg'],
+        src: ['./img/best_05-1.jpg', './img/best_05-2.jpg'],
         productKR : 'CRAFT PANT DUNMORE'
     },
     {
         name: 'best',
-        src: ['../img/best_06-1.jpg', '../img/best_06-2.jpg'],
+        src: ['./img/best_06-1.jpg', './img/best_06-2.jpg'],
         productKR : 'COASTAL JACKET'
     },
     {
         name: 'best',
-        src: ['../img/best_07-1.jpg', '../img/best_07-2.jpg'],
+        src: ['./img/best_07-1.jpg', './img/best_07-2.jpg'],
         productKR : 'AWAKE NY TEDDY JACKET'
     },
     {
         name: 'best',
-        src: ['../img/best_08-1.jpg', '../img/best_08-2.jpg'],
+        src: ['./img/best_08-1.jpg', './img/best_08-2.jpg'],
         productKR : 'HOODED CARHARTT SWEATSHIRT'
     },
     {
         name: 'new',
-        src: ['../img/new_01-1.jpg', '../img/new_01-2.jpg'],
+        src: ['./img/new_01-1.jpg', './img/new_01-2.jpg'],
         productKR : 'S/S SOUVENIR VALLEY T-SHIRT'
     },
     {
         name: 'new',
-        src: ['../img/new_02-1.jpg', '../img/new_02-2.jpg'],
+        src: ['./img/new_02-1.jpg', './img/new_02-2.jpg'],
         productKR : 'S/S NEW FRONTIER T-SHIRT'
     },
     {
         name: 'new',
-        src: ['../img/new_03-1.jpg', '../img/new_03-2.jpg'],
+        src: ['./img/new_03-1.jpg', './img/new_03-2.jpg'],
         productKR : 'DOUBLE KNEE PANT DEARBORN'
     },
     {
         name: 'new',
-        src: ['../img/new_04-1.jpg', '../img/new_04-2.jpg'],
+        src: ['./img/new_04-1.jpg', './img/new_04-2.jpg'],
         productKR : 'S/S DELRAY SHIRT'
     },
     {
         name: 'new',
-        src: ['../img/new_05-1.jpg', '../img/new_05-2.jpg'],
+        src: ['./img/new_05-1.jpg', './img/new_05-2.jpg'],
         productKR : 'W HOODED TACOMA SWEATSHIRT'
     },
     {
         name: 'new',
-        src: ['../img/new_06-1.jpg', '../img/new_06-2.jpg'],
+        src: ['./img/new_06-1.jpg', './img/new_06-2.jpg'],
         productKR : 'W HOODED TACOMA SWEATSHIRT'
     },
     {
         name: 'new',
-        src: ['../img/new_07-1.jpg', '../img/new_07-2.jpg'],
+        src: ['./img/new_07-1.jpg', './img/new_07-2.jpg'],
         productKR : 'S/S DELRAY SHIRT'
     },
     {
         name: 'new',
-        src: ['../img/new_08-1.jpg', '../img/new_08-2.jpg'],
+        src: ['./img/new_08-1.jpg', './img/new_08-2.jpg'],
         productKR : 'S/S DELRAY SHIRT'
     },
     {
         name: 'lnb',
-        src: ['../img/menu_00_default_1.png']
+        src: ['./img/menu_00_default_1.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_00_default_2.png']
+        src: ['./img/menu_00_default_2.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_01.png']
+        src: ['./img/menu_01.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_02.png']
+        src: ['./img/menu_02.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_03.png']
+        src: ['./img/menu_03.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_04.png']
+        src: ['./img/menu_04.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_05.png']
+        src: ['./img/menu_05.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_06.png']
+        src: ['./img/menu_06.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_07.png']
+        src: ['./img/menu_07.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_08.png']
+        src: ['./img/menu_08.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_09.png']
+        src: ['./img/menu_09.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_10.png']
+        src: ['./img/menu_10.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_11.png']
+        src: ['./img/menu_11.png']
     },
     {
         name: 'lnb',
-        src: ['../img/menu_12.png']
+        src: ['./img/menu_12.png']
     },
     {
         name: 'lookbook_hoverInfo',
@@ -225,22 +225,22 @@ const imgData = [
     },
     {
         name: 'instagram',
-        src: ['../img/insta_01.jpg'],
+        src: ['./img/insta_01.jpg'],
         path: 'https://www.instagram.com/p/CpAKSjvKlWK/'
     },
     {
         name: 'instagram',
-        src: ['../img/insta_02.jpg'],
+        src: ['./img/insta_02.jpg'],
         path: 'https://www.instagram.com/p/Cjk6xMlt7ij/'
     },
     {
         name: 'instagram',
-        src: ['../img/insta_03.jpg'],
+        src: ['./img/insta_03.jpg'],
         path: 'https://www.instagram.com/p/Cll5NjPqSXr/'
     },
     {
         name: 'instagram',
-        src: ['../img/insta_04.jpg'],
+        src: ['./img/insta_04.jpg'],
         path: 'https://www.instagram.com/p/Ck5hUVyot1k/'
     },
     {

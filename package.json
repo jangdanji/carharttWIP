@@ -9,7 +9,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://jangdanji.github.io/carhartt",
+  "homepage": "https://jangdanji.github.io/carharttWIP",
   "author": "",
   "license": "ISC",
   "dependencies": {
