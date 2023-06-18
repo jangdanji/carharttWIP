@@ -570,241 +570,81 @@ var imgData = [{
 }];
 var _default = imgData;
 exports.default = _default;
-},{}],"js/sub_page_import.js":[function(require,module,exports) {
+},{}],"js/search_result.js":[function(require,module,exports) {
 "use strict";
 
 var _data = _interopRequireDefault(require("./data.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-/* sub page 상품 import */
-
-var productList = document.querySelector('.products .product-list');
-var products = [];
-function removeBox() {
-  var boxRemoveTarget = document.querySelectorAll('.products .product-list .product-box');
-  boxRemoveTarget.forEach(function (value) {
-    return value.remove();
-  });
-}
 function comma(price) {
   var result = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return result;
 }
-function sortProducts(products) {
-  var selectFilter = document.getElementById('productSelector');
-  console.log(selectFilter);
-  console.log(selectFilter.value);
-  if (selectFilter.value == "newest") products.sort(function (a, b) {
-    return a.productNum - b.productNum;
-  });else if (selectFilter.value == "hot") products.sort(function (a, b) {
-    return a.sale - b.sale;
-  });else if (selectFilter.value == "price-low") products.sort(function (a, b) {
-    return a.price - b.price;
-  });else if (selectFilter.value == "price-high") products.sort(function (a, b) {
-    return b.price - a.price;
-  });
-}
-function importData(valueCategory, valueColor, valuePrice) {
-  products = [];
-  var pagenation = document.querySelector('.products .pagination');
-  var resetPage = pagenation.querySelectorAll('span');
-  removeBox();
-  resetPage.forEach(function (page) {
-    return pagenation.removeChild(page);
-  });
-  function category_condition(value) {
-    var check = valueCategory.some(function (category) {
-      return value.category == category;
-    });
-    return check;
+var urlParams = new URLSearchParams(window.location.search);
+var searchQuery = urlParams.get('search'); // "example"
+var pattern = new RegExp(searchQuery, 'i');
+
+/* 예외 발생 : 셔츠를 찾으면 티셔츠도 같이 찾아짐 */
+var shirt;
+if (searchQuery === '셔츠' || /shirt/i.test(searchQuery)) shirt = true;else shirt = false;
+console.log(pattern);
+var searchResult = document.querySelector('.search-result .result-list');
+var dataStat = document.querySelector('.search-result p.search-data');
+var productList = _data.default.filter(function (value) {
+  return value.name === 'product-list';
+});
+var resultList = productList.filter(function (value) {
+  if (shirt == true && value.category == 'tshirt') {
+    // console.log('셔츠 예외 발생')
+  } else {
+    return value.productKR.includes(searchQuery) || pattern.test(value.product);
   }
-  function color_condition(value) {
-    var check = valueColor.some(function (color) {
-      return value.color == color;
-    });
-    return check;
-  }
-  function price_condition(priceFilterIndexNum, price) {
-    var p = price.price;
-    var result = false;
+});
 
-    // console.log(priceFilterIndexNum)
+// let productList = []
+// let resultList = []
 
-    priceFilterIndexNum.forEach(function (num) {
-      var priceFilters = [p <= 50000, 50000 <= p && p <= 150000, 150000 <= p && p <= 250000, 250000 <= p && p <= 500000, 500000 < p];
-      if (priceFilters[num] == true) {
-        result = true;
-        // console.log(price.price)
-      }
-    });
+// imgData.forEach((product) => { /* 모든 상품 뽑기 */
+//     if (product.name === 'product-list') {
+//         productList.push(product)
+//     }
+// })
 
-    console.log(result);
-    if (result) return true;else return false;
-  }
+// productList.forEach((pd) => { /* 검색어가 상품 이름에 들어가면 뽑기 */
+//     if (shirt == true && pd.category == 'tshirt') {
+//         // console.log('셔츠 예외 발생')
+//     } else if (pd.productKR.includes(searchQuery) || pattern.test(pd.product)) {
+//         resultList.push(pd)
+//     } else {
+//         console.log(pd.productKR.includes(searchQuery))
+//         console.log(pd.productKR)
+//         console.log(searchQuery)
+//     }
+// })
 
-  /* prices는 priceFilters의 인덱스에 들어가게 집어넣어야됨 [0, 3] 이런식으로 */
-
-  _data.default.forEach(function (value) {
-    var condition1 = true;
-    var condition2 = true;
-    var condition3 = true;
-    valueCategory.length == 0 ? true : condition1 = category_condition(value);
-    valueColor.length == 0 ? true : condition2 = color_condition(value);
-    valuePrice.length == 0 ? true : condition3 = price_condition(valuePrice, value);
-    if (value.name == 'product-list' && condition1 && condition2 && condition3) products.push(value);
-  });
-
-  // console.log(products)
-
-  // products가 채워졌으니 정렬부터 하기
-
-  sortProducts(products);
-
-  /* products가 채워졌으니 페이지 만들기 */
-
-  var pages = products.length / 12; /* 12개씩 나누기 페이지당 12개 */
-
-  if (products.length % 12 !== 0) {
-    /* 12의 배수가 아니라면 그냥 반내림 하고 1 추가*/
-    pages = Math.floor(pages) + 1;
-  }
-  console.log('상품 총 갯수 : ' + products.length + '개');
-  console.log(pages + '개의 페이지를 만들어야 함');
-
-  /* 페이지 만들기 */
-  for (var i = 1; i <= pages; i++) {
-    var page = document.createElement('span');
-    page.textContent = i;
-    pagenation.appendChild(page);
-  }
-
-  /* 페이지 누르면 12개 뽑기 */
-
-  var paginationSpan = document.querySelectorAll('.pagination span');
-  paginationSpan.forEach(function (value, index) {
-    value.addEventListener('click', function () {
-      console.log('페이지 인덱스 : ' + index);
-      removeBox();
-      get12(index, products);
-      paginationSpan.forEach(function (value) {
-        return value.classList.remove('active');
-      });
-      value.classList.add('active');
-    });
-  });
-  try {
-    paginationSpan[0].classList.add('active');
-  } catch (_unused) {
-    /* 상품이 아예 없으면 오류남.. */
-  }
-}
-
-/* 12개 뽑기 */
-function get12(index, products) {
-  if (products.length == 0) {
-    var nothing = document.createElement('div');
-    nothing.setAttribute('class', 'product-box');
-    nothing.style.width = '100%';
-    nothing.style.textAlign = 'center';
-    nothing.style.fontSize = '20px';
-    nothing.innerHTML = '<i class="fas fa-exclamation-circle"></i> 조건에 맞는 상품이 존재하지 않아요!';
-    productList.appendChild(nothing);
-  }
-  var indexStart = 12 * index; /* 1, 13, 25, 38 */
-  var indexEnd;
-
-  /* 없는 값 불러오면 자바스크립트는 undefined를 반환 */
-  if (products[indexStart + 12] === undefined) indexEnd = products.length - 1; /* 뒤에 값이 12개 이하로 있으면 */else if (products[indexStart + 12] !== undefined) indexEnd = indexStart + 12 - 1; /* 뒤에 값이 12개 더 있으면 */
-
-  console.log('시작 : ' + indexStart + '번째 상품');
-  console.log('끝 : ' + indexEnd + '번째 상품');
-  for (var i = indexStart; i <= indexEnd; i++) {
+console.log(resultList);
+if (resultList.length == 0) {
+  var nothing = document.createElement('div');
+  nothing.setAttribute('class', 'product-box');
+  nothing.style.width = '100%';
+  nothing.style.textAlign = 'center';
+  nothing.style.fontSize = '20px';
+  nothing.innerHTML = '<i class="fas fa-exclamation-circle"></i> 조건에 맞는 상품이 존재하지 않아요!';
+  searchResult.appendChild(nothing);
+  dataStat.textContent = '검색결과 (총 0건)';
+} else {
+  resultList.forEach(function (product, index) {
     // console.log(i)
 
     var product_box = document.createElement('div');
     product_box.setAttribute('class', 'product-box');
-    product_box.innerHTML = "\n            <div class=\"imgBox\">\n                <a href=\"./detail.html\">\n                    <img src=".concat(products[i].src[0], " alt=\"product-image\">\n                    <img src=").concat(products[i].src[1], " alt=\"product-image\">\n                </a>\n            </div>\n            \n            <div class=\"product-info\">\n                <div class=\"product-status\">\n                    <span></span>\n                    <span></span>\n                </div>\n                <div class=\"product-text\">\n                    <p class=\"product-name-kr\">").concat(products[i].productKR, "</p>\n                    <p class=\"product-name-eng\">").concat(products[i].product, "</p>\n                    <p class=\"product-price\">&#8361; ").concat(comma(products[i].price), "</p>\n                </div>\n                <div class=\"product-buy\">\n                    <span><i class=\"fas fa-shopping-cart\"></i></span>\n                    <span><i class=\"fas fa-heart\"></i></span>\n                </div>\n            </div>\n        ");
-    /* 세번째 박스는 margin right 0 */
-    /* 2, 5, 7 */
-    if ((i + 1) % 3 == 0) product_box.style.marginRight = '0';
-    productList.appendChild(product_box);
-  }
+    product_box.innerHTML = "\n            <div class=\"imgBox\">\n                <a href=\"./detail.html\">\n                    <img src=".concat(product.src[0], " alt=\"product-image\">\n                    <img src=").concat(product.src[1], " alt=\"product-image\">\n                </a>\n            </div>\n            \n            <div class=\"product-info\">\n                <div class=\"product-status\">\n                    <span></span>\n                    <span></span>\n                </div>\n                <div class=\"product-text\">\n                    <p class=\"product-name-kr\">").concat(product.productKR, "</p>\n                    <p class=\"product-name-eng\">").concat(product.product, "</p>\n                    <p class=\"product-price\">&#8361; ").concat(comma(product.price), "</p>\n                </div>\n                <div class=\"product-buy\">\n                    <span><i class=\"fas fa-shopping-cart\"></i></span>\n                    <span><i class=\"fas fa-heart\"></i></span>\n                </div>\n            </div>\n        ");
+    /* 네번째 박스는 margin right 0 */
+    /* 3, 7, 11 */
+    if ((index + 1) % 4 == 0) product_box.style.marginRight = '0';
+    searchResult.appendChild(product_box);
+    dataStat.textContent = "\uAC80\uC0C9\uACB0\uACFC (\uCD1D ".concat(resultList.length, "\uAC74)");
+  });
 }
-
-/* 기본값 */
-
-var categoryCheck = [];
-var colorCheck = [];
-var priceCheck = [];
-function checkcheck(checkList, checkbox) {
-  var data = checkbox.getAttribute('data');
-  if (checkbox.checked) checkList.push(data);else if (!checkbox.checked) {
-    var index = checkList.indexOf(data);
-    console.log("\n        ".concat(checkList, "\uC5D0\uC11C ").concat(index + 1, "\uBC88\uC9F8\uC5D0 \uC788\uB294 ").concat(checkList[index], "\uB97C \uBE84\uAC70\uC5D0\uC694\n    "));
-    checkList.splice(index, 1);
-  }
-  console.log(checkList);
-}
-var filterClothes = document.querySelectorAll('.side-filter .filter-clothes label input');
-var filterPrice = document.querySelectorAll('.side-filter .filter-price label input');
-var filterColor = document.querySelectorAll('.side-filter .filter-color label input');
-// const filterDiscount = document.querySelectorAll('.side-filter .filter-discount label input')
-
-filterClothes.forEach(function (cloth) {
-  cloth.addEventListener('change', function () {
-    checkcheck(categoryCheck, this);
-    importData(categoryCheck, colorCheck, priceCheck);
-    get12(0, products);
-  });
-});
-filterPrice.forEach(function (price) {
-  price.addEventListener('change', function () {
-    checkcheck(priceCheck, this);
-    importData(categoryCheck, colorCheck, priceCheck);
-    get12(0, products);
-  });
-});
-filterColor.forEach(function (color) {
-  color.addEventListener('change', function () {
-    checkcheck(colorCheck, this);
-    importData(categoryCheck, colorCheck, priceCheck);
-    get12(0, products);
-  });
-});
-var selectFilter = document.getElementById('productSelector');
-selectFilter.addEventListener('change', function () {
-  importData(categoryCheck, colorCheck, priceCheck);
-  get12(0, products);
-});
-
-/* 기본 */
-
-importData(categoryCheck, colorCheck, priceCheck);
-get12(0, products);
-
-/* 초기화 */
-
-var filterReset = document.querySelector('.filter-category span.filter-reset');
-filterReset.addEventListener('click', function () {
-  filterClothes.forEach(function (checkbox) {
-    return checkbox.checked = false;
-  });
-  filterPrice.forEach(function (checkbox) {
-    return checkbox.checked = false;
-  });
-  filterColor.forEach(function (checkbox) {
-    checkbox.checked = false;
-
-    /* 이건 동적인 요소라서 수동으로 ... */
-    checkbox.parentElement.querySelector('i.fa-check').style.display = 'none';
-  });
-  // filterDiscount.forEach((checkbox) => checkbox.checked = false)
-
-  categoryCheck = [];
-  colorCheck = [];
-  priceCheck = [];
-  importData(categoryCheck, colorCheck, priceCheck);
-  get12(0, products);
-});
 },{"./data.js":"js/data.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -974,5 +814,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/sub_page_import.js"], null)
-//# sourceMappingURL=/sub_page_import.62059512.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/search_result.js"], null)
+//# sourceMappingURL=/search_result.12fcdfa3.js.map

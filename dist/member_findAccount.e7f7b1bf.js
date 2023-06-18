@@ -117,14 +117,40 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/sub_page.js":[function(require,module,exports) {
-/* 서브페이지 색상 필터 체크 표시 */
+})({"js/member_findAccount.js":[function(require,module,exports) {
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'js/member_data.json');
+xhr.send();
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    var userInfo = JSON.parse(xhr.responseText);
 
-var filterColorCheck = document.querySelectorAll('.filter-color label input');
-filterColorCheck.forEach(function (checkbox) {
-  checkbox.addEventListener('change', function () {
-    $(checkbox).next().toggle();
-  });
+    /* 아이디 비번 찾기 */
+
+    var id = document.querySelector('input.idBox');
+    var tel = document.querySelector('select.telBox');
+    var tel1 = document.querySelector('input#telBox1');
+    var tel2 = document.querySelector('input#telBox2');
+    tel1.addEventListener('input', function () {
+      /* 이건 그냥 첫 4자리 치면 넘어가는거 */
+      if (this.value.length >= 4) tel2.focus();
+    });
+    var btn = document.querySelector('.finder button.commitBtn');
+    btn.addEventListener('click', function () {
+      if (id.value === '' || tel1.value === '' || tel2.value === '') {
+        return alert('정보를 모두 입력해 주세요.');
+      }
+      for (var i in userInfo) if (tel.value + tel1.value + tel2.value == userInfo[i].phone && id.value === userInfo[i].id) {
+        alert('임시 비밀번호가 발송되었습니다.');
+      } else alert('잘못 입력했거나 존재하지 않는 회원입니다.');
+    });
+  }
+};
+
+/* 로고 링크 */
+var home = document.querySelector('.logo');
+home.addEventListener('click', function () {
+  window.location.href = './index.html';
 });
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -295,5 +321,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/sub_page.js"], null)
-//# sourceMappingURL=/sub_page.7484b765.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/member_findAccount.js"], null)
+//# sourceMappingURL=/member_findAccount.e7f7b1bf.js.map

@@ -117,14 +117,50 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/sub_page.js":[function(require,module,exports) {
-/* 서브페이지 색상 필터 체크 표시 */
+})({"js/member_login.js":[function(require,module,exports) {
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'js/member_data.json');
+xhr.send();
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    var userInfo = JSON.parse(xhr.responseText);
 
-var filterColorCheck = document.querySelectorAll('.filter-color label input');
-filterColorCheck.forEach(function (checkbox) {
-  checkbox.addEventListener('change', function () {
-    $(checkbox).next().toggle();
+    /* 로그인 */
+
+    var loginBtn = document.querySelector('.commitBtn');
+    loginBtn.addEventListener('click', function () {
+      var id = document.querySelector('.inputLoginBox input#idBox').value;
+      var pw = document.querySelector('.inputLoginBox input#pwBox').value;
+      if (id == '' || pw == '') return alert('아이디 또는 패스워드를 입력해주세요.');
+      for (var i in userInfo) {
+        if (userInfo[i].id === id && userInfo[i].pw === pw) {
+          alert('환영합니다 ' + id + '님!');
+          window.location.href = './index.html';
+        } else alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+      }
+    });
+  }
+};
+
+/* 로그인 창 input 클릭 할 때 밑줄 생기기 */
+
+var inputTextBoxes = document.querySelectorAll('.login label.box input');
+var _loop = function _loop(i) {
+  inputTextBoxes[i].addEventListener('focus', function () {
+    inputTextBoxes[i].parentNode.classList.add('focusOn');
   });
+  inputTextBoxes[i].addEventListener('blur', function () {
+    inputTextBoxes[i].parentNode.classList.remove('focusOn');
+  });
+};
+for (var i = 0; i < inputTextBoxes.length; i++) {
+  _loop(i);
+}
+
+/* 로고 링크 */
+var home = document.querySelector('.logo');
+home.addEventListener('click', function () {
+  window.location.href = './index.html';
 });
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -295,5 +331,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/sub_page.js"], null)
-//# sourceMappingURL=/sub_page.7484b765.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/member_login.js"], null)
+//# sourceMappingURL=/member_login.08b473a1.js.map

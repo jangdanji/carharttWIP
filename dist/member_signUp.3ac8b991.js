@@ -117,14 +117,96 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/sub_page.js":[function(require,module,exports) {
-/* 서브페이지 색상 필터 체크 표시 */
+})({"js/member_signUp.js":[function(require,module,exports) {
+/* 회원가입 검사 */
 
-var filterColorCheck = document.querySelectorAll('.filter-color label input');
-filterColorCheck.forEach(function (checkbox) {
-  checkbox.addEventListener('change', function () {
-    $(checkbox).next().toggle();
-  });
+var id = document.getElementById('idBox');
+var pw = document.getElementById('pwBox');
+var pwChk = document.getElementById('pwChkBox');
+var name = document.getElementById('nameBox');
+var tel = document.querySelectorAll('.telBoxWrap .telBox');
+var addr = document.getElementById('addrBox');
+var signupBtn = document.querySelector('button.commitBtn');
+var allInput = document.querySelectorAll('label.box input');
+id.addEventListener('change', function () {
+  if (id.value.length <= 4) {
+    checking(this, '아이디는 4자리 이상으로 만들어 주세요!', 'red');
+  } else {
+    checking(this, '멋진 아이디네요!', '#545ADC');
+  }
+});
+pw.addEventListener('change', function () {
+  if (pw.value.length <= 8 || pw.value.length >= 16) {
+    checking(this, '8~16자리 비밀번호를 만들어 주세요!', 'red');
+  } else {
+    checking(this, '올바른 비밀번호 입니다.', '#545ADC');
+  }
+});
+pwChk.addEventListener('change', function () {
+  if (pw.value != pwChk.value) {
+    checking(this, '비밀번호가 일치하지 않아요!', 'red');
+  } else {
+    checking(this, '비밀번호가 일치합니다!', '#545ADC');
+  }
+});
+tel[1].addEventListener('input', function () {
+  if (this.value.length >= 4) tel[2].focus();
+});
+tel[1].addEventListener('change', function () {
+  if (this.value.length <= 3) {
+    checking(this, '전화번호 4자리를 올바르게 입력해주세요!', 'red', this.parentElement.parentElement.querySelector('.textAlert'));
+  } else {
+    checking(this, '', '#545ADC', this.parentElement.parentElement.querySelector('.textAlert'));
+  }
+});
+tel[2].addEventListener('change', function () {
+  if (this.value.length <= 3) {
+    checking(this, '전화번호 4자리를 올바르게 입력해주세요!', 'red', this.parentElement.parentElement.querySelector('.textAlert'));
+  } else {
+    checking(this, '', '#545ADC', this.parentElement.parentElement.querySelector('.textAlert'));
+  }
+});
+signupBtn.addEventListener('click', function () {
+  var alerts = document.querySelectorAll('span.textAlert');
+  for (var i = 0; i < alerts.length; i++) {
+    if (alerts[i].style.color == 'red') return alert('입력한 정보를 다시 확인해 주세요!');
+  }
+  for (var _i = 0; _i < allInput.length; _i++) {
+    if (allInput[_i].value == '') return alert('정보를 모두 입력해 주세요!!');
+  }
+  if (term1.checked != true || term2.checked != true) return alert('약관에 모두 동의해주세요!');
+  alert('가입되었습니다!');
+  window.location.href = './login.html';
+});
+function checking(element, text, color) {
+  var alertSpan = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : element.previousElementSibling;
+  if (element.value == '') return;
+  alertSpan.textContent = text;
+  alertSpan.style.color = color;
+  alertSpan.style.float = 'right';
+  alertSpan.style.fontSize = '12px';
+  if (color == 'red') element.select();
+}
+
+/* 약관 동의 */
+
+var termAll = document.getElementById('termAll');
+var term1 = document.getElementById('term1');
+var term2 = document.getElementById('term2');
+termAll.addEventListener('change', function () {
+  if (termAll.checked == true) {
+    term1.checked = true;
+    term2.checked = true;
+  } else {
+    term1.checked = false;
+    term2.checked = false;
+  }
+});
+term1.addEventListener('change', function () {
+  if (term1.checked == term2.checked == true) termAll.checked = true;
+});
+term2.addEventListener('change', function () {
+  if (term1.checked == term2.checked == true) termAll.checked = true;
 });
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -295,5 +377,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/sub_page.js"], null)
-//# sourceMappingURL=/sub_page.7484b765.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/member_signUp.js"], null)
+//# sourceMappingURL=/member_signUp.3ac8b991.js.map
