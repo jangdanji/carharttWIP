@@ -1,4 +1,71 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>칼하트 WIP 회원가입</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"><link rel="stylesheet" href="style.6b54f5b7.css"><script type="module" src="member_signUp.3ac8b991.js"></script></head><body> <div class="container signup"> <div class="logo"> <img src="logo_black.c08f2053.png" alt=""> </div> <div class="inputBox"> <label for="idBox" class="box inputID" id="inputText"> <span class="inputTitle">아이디</span><span class="textAlert"></span> <input type="text" class="idBox" id="idBox" placeholder="" maxlength="16"> </label> <label for="pwBox" class="box inputPW" id="inputText"> <span class="inputTitle">비밀번호</span><span class="textAlert"></span> <input type="password" class="pwBox" id="pwBox" placeholder="" maxlength="16"> </label> <label for="pwChkBox" class="box inputPWChk" id="inputText"> <span class="inputTitle">비밀번호 확인</span><span class="textAlert"></span> <input type="password" class="pwChkBox" id="pwChkBox" placeholder=""> </label> <label for="nameBox" class="box inputName" id="inputText"> <span class="inputTitle">이름</span><span class="textAlert"></span> <input type="text" class="nameBox" id="nameBox" placeholder=""> </label> <label for="telBox" class="box inputTel" id="inputText"> <span class="inputTitle">전화번호</span><span class="textAlert"></span> <div class="telBoxWrap"> <select class="telBox"> <option value="010">010</option> <option value="010">011</option> </select> <input type="text" class="telBox" id="telBox2" maxlength="4"> <input type="text" class="telBox" id="telBox3" maxlength="4"> </div> </label> <label for="addrBox" class="box inputAddr" id="inputText"> <span class="inputTitle">주소</span><span class="textAlert"></span> <input type="text" class="addrBox" id="addrBox" placeholder=""> </label> </div> <div class="terms"> <label for="termAll" class="term"> <input type="checkbox" id="termAll"><span> 약관 전체 동의</span> </label> <label for="term1" class="term"> <input type="checkbox" id="term1"><span> 이용약관에 동의합니다.</span> </label> <pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>칼하트 WIP 회원가입</title>
+    
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+    <!-- style -->
+    <link rel="stylesheet" href="/style.6b54f5b7.css">
+
+    <!-- db -->
+    <script type="module" src="/member_signUp.3ac8b991.js"></script>
+
+</head>
+
+<body>
+    <div class="container signup">
+        <div class="logo">
+            <img src="/logo_black.c08f2053.png" alt="">
+        </div>
+        <div class="inputBox">
+                <label for="idBox" class="inputID box" id="inputText">
+                    <span class="inputTitle">아이디</span><span class="textAlert"></span>
+                    <input type="text" class="idBox" id="idBox" placeholder="" maxlength="16">
+                </label>
+                <label for="pwBox" class="inputPW box" id="inputText">
+                    <span class="inputTitle">비밀번호</span><span class="textAlert"></span>
+                    <input type="password" class="pwBox" id="pwBox" placeholder="" maxlength="16">
+                </label>
+                <label for="pwChkBox" class="inputPWChk box" id="inputText">
+                    <span class="inputTitle">비밀번호 확인</span><span class="textAlert"></span>
+                    <input type="password" class="pwChkBox" id="pwChkBox" placeholder="">
+                </label>
+                <label for="nameBox" class="inputName box" id="inputText">
+                    <span class="inputTitle">이름</span><span class="textAlert"></span>
+                    <input type="text" class="nameBox" id="nameBox" placeholder="">
+                </label>
+                <label for="telBox" class="inputTel box" id="inputText">
+                    <span class="inputTitle">전화번호</span><span class="textAlert"></span>
+                    <div class="telBoxWrap">
+                        <select class="telBox">
+                            <option value="010">010</option>
+                            <option value="010">011</option>
+                        </select>
+                        <input type="text" class="telBox" id="telBox2" maxlength="4">
+                        <input type="text" class="telBox" id="telBox3" maxlength="4">
+                    </div>
+                </label>
+                <label for="addrBox" class="inputAddr box" id="inputText">
+                    <span class="inputTitle">주소</span><span class="textAlert"></span>
+                    <input type="text" class="addrBox" id="addrBox" placeholder="">
+                </label>
+        </div>
+
+
+        <div class="terms">
+            <label for="termAll" class="term">
+                <input type="checkbox" id="termAll"><span> 약관 전체 동의</span>
+            </label>
+            <label for="term1" class="term">
+                <input type="checkbox" id="term1"><span> 이용약관에 동의합니다.</span>
+            </label>
+            
+            <pre>
                 
 (1) 이용 약관 (전자상거래 표준 약관)
 
@@ -291,11 +358,26 @@ EMAIL: customer@worksout.co.kr
 - 이 개인정보처리방침은 시행일로부터 적용되며, 법령 및 방침에 따른 변경내용의 추가, 삭제 및 정정이 있는 경우에는 변경사항의 시행 7일 전부터 공지사항을 통하여 고지할 것입니다.
 
 최근 개정일: 2021년 12월 12일
-            </pre> <label for="term2" class="term"> <input type="checkbox" id="term2"><span> 개인정보 수집・이용 안내</span> </label> <pre>
+            </pre>
+            
+            <label for="term2" class="term">
+                <input type="checkbox" id="term2"><span> 개인정보 수집・이용 안내</span>
+            </label>
+
+            <pre>
 개인정보 처리방침개인 정보 수집 및 이용 안내
 
 - 홈페이지에서 회원님이 가입 시 필요한 서비스 제공과 이용자 식별, 필요한 정보 전달을 위해 최소한의 개인정보를 수집합니다.
 - 개인정보 수집•이용 목적 : 이용자 식별, 서비스 이행을 위한 연락
 - 개인정보 수집 항목 : 이름, 성별, 생년월일, 아이디(이메일), 비밀번호, 휴대전화번호
 - 개인정보 보유 및 이용기간 : 회원 탈퇴 후 5일까지
-            </pre> </div> <button type="button" class="commitBtn">가입</button> </div> </body></html>
+            </pre>
+
+        </div>
+
+
+        <button type="button" class="commitBtn">가입</button>
+
+    </div>
+</body>
+</html>

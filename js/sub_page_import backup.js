@@ -4,6 +4,8 @@ import imgData from "./data.js"
 
 let productList = document.querySelector('.products .product-list')
 
+let products = []
+
 function removeBox(){
     let boxRemoveTarget = document.querySelectorAll('.products .product-list .product-box')
     boxRemoveTarget.forEach((value) => value.remove())
@@ -16,6 +18,8 @@ function comma(price){
 
 function sortProducts(products){
     let selectFilter = document.getElementById('productSelector')
+    console.log(selectFilter)
+    console.log(selectFilter.value)
     if (selectFilter.value == "newest") products.sort((a, b) => a.productNum - b.productNum)
     else if (selectFilter.value == "hot") products.sort((a, b) => a.sale - b.sale)
     else if (selectFilter.value == "price-low") products.sort((a, b) => a.price - b.price)
@@ -31,7 +35,76 @@ function importData(valueCategory, valueColor, valuePrice) {
     removeBox()
     resetPage.forEach((page) => pagenation.removeChild(page))
 
+    function category_condition (value){
 
+            let check = valueCategory.some((category) => {
+                return value.category == category
+            })
+            return check
+    }
+
+    function color_condition (value){
+
+            let check = valueColor.some((color) => {
+                return value.color == color
+            })
+            return check
+    }
+
+    function price_condition (priceFilterIndexNum, price){
+
+        let p = price.price
+        let result = false
+
+        // console.log(priceFilterIndexNum)
+    
+        priceFilterIndexNum.forEach((num) => {
+            let priceFilters = [
+                                    p <= 50000,
+                                    50000 <= p && p <= 150000,
+                                    150000 <= p && p <= 250000,
+                                    250000 <= p && p <= 500000,
+                                    500000 < p
+                                ]
+
+            if (priceFilters[num] == true){
+                result = true
+                // console.log(price.price)
+            }
+            
+        })
+
+        console.log(result)
+
+        if (result) return true
+        else return false
+    }
+
+    
+    /* prices는 priceFilters의 인덱스에 들어가게 집어넣어야됨 [0, 3] 이런식으로 */
+
+
+    imgData.forEach((value) => {
+
+        let condition1 = true
+        let condition2 = true
+        let condition3 = true
+
+        valueCategory.length == 0 ? true : condition1 = category_condition(value)
+        valueColor.length == 0 ? true : condition2 = color_condition(value)
+        valuePrice.length == 0 ? true : condition3 = price_condition(valuePrice, value)
+
+        if (
+            value.name == 'product-list'
+            && condition1
+            && condition2
+            && condition3
+            ) products.push(value)
+    })
+
+    // console.log(products)
+
+    // products가 채워졌으니 정렬부터 하기
 
     sortProducts(products)
 
@@ -148,7 +221,33 @@ function get12(index, products){
 }
 
 
-/* 선택된 필터 추출하기 */
+
+/* 기본값 */
+
+let categoryCheck = []
+let colorCheck = []
+let priceCheck = []
+
+let allCheck = []
+
+function checkcheck(checkList, checkbox){
+    let data = checkbox.getAttribute('data')
+
+    if (checkbox.checked) checkList.push(data)
+    else if (!checkbox.checked) {
+        let index = checkList.indexOf(data);
+    //     console.log(`${checkList}에서 ${index+1}번째에 있는 ${checkList[index]}를 뺌`)
+        checkList.splice(index, 1)
+    }
+
+    console.log(checkList)
+    
+}
+
+// const filterClothes = document.querySelectorAll('.side-filter .filter-clothes label input')
+// const filterPrice = document.querySelectorAll('.side-filter .filter-price label input')
+// const filterColor = document.querySelectorAll('.side-filter .filter-color label input')
+// const filterDiscount = document.querySelectorAll('.side-filter .filter-discount label input')
 
 const AllFilter = document.querySelectorAll('.side-filter label input')
 
@@ -157,8 +256,6 @@ let checkList = []
 AllFilter.forEach((filter) => {
     filter.addEventListener('change', function(){
 
-        let products = []
-
         let data = this.getAttribute('data')
 
         if (this.checked) checkList.push(data)
@@ -166,67 +263,45 @@ AllFilter.forEach((filter) => {
             let index = checkList.indexOf(data)
             checkList.splice(index, 1)
         }
+        console.log(checkList)
 
-        let clothChecked = checkList.filter(check => check.includes('cloth'))
-        let priceChecked = checkList.filter(check => check.includes('price')) 
-        let colorChecked = checkList.filter(check => check.includes('color')) 
-
-        // console.log(`${clothChecked}, ${priceChecked}, ${colorChecked}`)
-
-        imgData.forEach((value) => {
-
-            let clothCheck /* 카테고리 분류 */
-            let colorCheck /* 색상 분류 */
-            let priceCheck /* 가격 분류 */
-
-            if (clothChecked.length == 0) clothCheck = true
-            else clothCheck = clothChecked.some((cloth) => value.category == cloth)
-
-            if (colorChecked.length == 0) colorCheck = true
-            else colorCheck = colorChecked.some((color) => value.color == color)
-
-            if(priceChecked.length == 0) priceCheck = true
-            else {
-                priceCheck = priceChecked.some((priceIdx) => {
-
-                    const p = value.price
-                    priceIdx = priceIdx.replace('price-', '')
-                    priceIdx = parseInt(priceIdx)
-
-                    let priceFilters = [
-                        p <= 50000,
-                        50000 <= p && p <= 150000,
-                        150000 <= p && p <= 250000,
-                        250000 <= p && p <= 500000,
-                        500000 < p]
-
-                    return priceFilters[priceIdx]
-
-                })
-            }
-
-            /* 모든 값이 true라면 최종적으로 필터링 통과됨 */
-            if (clothCheck && priceCheck && colorCheck) products.push(value)
-
-            sortProducts(products) /* products 정렬하기 */
-
-            console.log(products)
-        })
     })
 })
 
-
-
-// let selectFilter = document.getElementById('productSelector')
-// selectFilter.addEventListener('change', function(){
-//     importData(categoryCheck, colorCheck, priceCheck)
-//     get12(0, products)
+// filterClothes.forEach((cloth) => {
+//     cloth.addEventListener('change', function(){
+//         checkcheck(categoryCheck, this)
+//         importData(categoryCheck, colorCheck, priceCheck)
+//         get12(0, products)
+//     })
 // })
 
-// /* 기본 */
+// filterPrice.forEach((price) => {
+//     price.addEventListener('change', function(){
+//         checkcheck(priceCheck, this)
+//         importData(categoryCheck, colorCheck, priceCheck)
+//         get12(0, products)
+//     })
+// })
 
-// importData(categoryCheck, colorCheck, priceCheck)
-// get12(0, products)
+// filterColor.forEach((color) => {
+//     color.addEventListener('change', function(){
+//         checkcheck(colorCheck, this)
+//         importData(categoryCheck, colorCheck, priceCheck)
+//         get12(0, products)
+//     })
+// })
+
+let selectFilter = document.getElementById('productSelector')
+selectFilter.addEventListener('change', function(){
+    importData(categoryCheck, colorCheck, priceCheck)
+    get12(0, products)
+})
+
+/* 기본 */
+
+importData(categoryCheck, colorCheck, priceCheck)
+get12(0, products)
 
 
 /* 초기화 */
