@@ -2,8 +2,6 @@ import imgData from "./data.js"
 
 /* sub page 상품 import */
 
-let productList = document.querySelector('.products .product-list')
-
 function removeBox(){
     let boxRemoveTarget = document.querySelectorAll('.products .product-list .product-box')
     boxRemoveTarget.forEach((value) => value.remove())
@@ -14,88 +12,116 @@ function comma(price){
     return result
 }
 
-function sortProducts(products){
+function filtering(){ /* 필터 */
+
+    /* 초기화 */
+    let products = []
+    let checkList = []
+
+    const AllFilter = document.querySelectorAll('.side-filter label input')
+
+    AllFilter.forEach((filter) => {
+        if (filter.checked) checkList.push(filter.getAttribute('data'))
+    })
+
+    let clothChecked = checkList.filter(check => check.includes('cloth'))
+    let priceChecked = checkList.filter(check => check.includes('price')) 
+    let colorChecked = checkList.filter(check => check.includes('color')) 
+
+    const productData = imgData.filter(data => data.name == 'product-list')
+
+    productData.forEach((value) => {
+
+        let clothCheck /* 카테고리 분류 */
+        let colorCheck /* 색상 분류 */
+        let priceCheck /* 가격 분류 */
+
+        if (clothChecked.length == 0) clothCheck = true /* 옷 카테고리 */
+        else clothCheck = clothChecked.some((cloth) => value.category == cloth)
+
+        if (colorChecked.length == 0) colorCheck = true /* 색상 */
+        else colorCheck = colorChecked.some((color) => value.color == color)
+
+        if(priceChecked.length == 0) priceCheck = true /* 가격 */
+        else {
+            priceCheck = priceChecked.some((priceIdx) => {
+
+                const p = value.price
+                priceIdx = priceIdx.replace('price-', '')
+                priceIdx = parseInt(priceIdx)
+
+                let priceFilters = [
+                    p <= 50000,
+                    50000 <= p && p <= 150000,
+                    150000 <= p && p <= 250000,
+                    250000 <= p && p <= 500000,
+                    500000 < p]
+
+                return priceFilters[priceIdx]
+
+            })
+        }
+
+        /* 모든 값이 true라면 최종적으로 필터링 통과됨 */
+        if (clothCheck && priceCheck && colorCheck) products.push(value)
+    })
+
+    console.log(products) /* 최종 정렬/필터 결과물 */
+
+    return products
+
+}
+
+function get12(index, products){ /* 12개 뽑기 */
+
+    /* 정렬하기 */
     let selectFilter = document.getElementById('productSelector')
     if (selectFilter.value == "newest") products.sort((a, b) => a.productNum - b.productNum)
     else if (selectFilter.value == "hot") products.sort((a, b) => a.sale - b.sale)
     else if (selectFilter.value == "price-low") products.sort((a, b) => a.price - b.price)
     else if (selectFilter.value == "price-high") products.sort((a, b) =>  b.price - a.price)
-}
 
-function importData(valueCategory, valueColor, valuePrice) {
-
-    /* 초기화 */
-    products = []
+    /* 페이지 초기화 */
     const pagenation = document.querySelector('.products .pagination')
+
     let resetPage = pagenation.querySelectorAll('span')
-    removeBox()
     resetPage.forEach((page) => pagenation.removeChild(page))
 
+    /* products 갯수 받아서 페이지 만들기 */
+    let pages = Math.ceil(products.length / 12);
 
-
-    sortProducts(products)
-
-    /* products가 채워졌으니 페이지 만들기 */
-
-    let pages = products.length / 12 /* 12개씩 나누기 페이지당 12개 */
-
-    if (products.length % 12 !== 0) { /* 12의 배수가 아니라면 그냥 반내림 하고 1 추가*/
-        pages = Math.floor(pages) + 1}
-
-    console.log('상품 총 갯수 : ' + products.length + '개')
-    console.log(pages + '개의 페이지를 만들어야 함')
-
-    /* 페이지 만들기 */
     for (let i = 1; i <= pages; i++) {
         let page = document.createElement('span')
         page.textContent = i
-
         pagenation.appendChild(page)
     }
 
-    /* 페이지 누르면 12개 뽑기 */
-
     let paginationSpan = document.querySelectorAll('.pagination span')
+    
+    try{
+        paginationSpan.forEach((span) => span.classList.remove('active'))
+        paginationSpan[index].classList.add('active')
+    }
+    catch{/* 상품이 아예 없으면 오류남.. */}
 
+    /* 페이지네이션 누르면 12개 뽑기 */
     paginationSpan.forEach((value, index) => {
-        value.addEventListener('click', function(){
-            console.log('페이지 인덱스 : ' + index)
+        value.addEventListener('click', function(){ 
             removeBox()
             get12(index, products)
-            paginationSpan.forEach((value) => value.classList.remove('active'))
-            value.classList.add('active')
-
         })
     })
 
-    try{
-        paginationSpan[0].classList.add('active') 
-    }
-    catch{
-        /* 상품이 아예 없으면 오류남.. */
-    }
-    
-
-}
-
-
-
-
-
-/* 12개 뽑기 */
-function get12(index, products){
+    let productList = document.querySelector('.products .product-list')
 
     if (products.length == 0) {
         let nothing = document.createElement('div')
-        nothing.setAttribute('class', 'product-box')
-        nothing.style.width = '100%'
-        nothing.style.textAlign = 'center'
-        nothing.style.fontSize = '20px'
-
-        nothing.innerHTML = '<i class="fas fa-exclamation-circle"></i> 조건에 맞는 상품이 존재하지 않아요!'
-
-        productList.appendChild(nothing)
-
+            nothing.setAttribute('class', 'product-box')
+            nothing.style.width = '100%'
+            nothing.style.textAlign = 'center'
+            nothing.style.fontSize = '20px'
+            nothing.innerHTML = '<i class="fas fa-exclamation-circle"></i> 조건에 맞는 상품이 존재하지 않아요!'
+            productList.appendChild(nothing)
     }
 
     let indexStart = 12 * index /* 1, 13, 25, 38 */
@@ -105,8 +131,8 @@ function get12(index, products){
     if (products[indexStart+12] === undefined) indexEnd = products.length - 1/* 뒤에 값이 12개 이하로 있으면 */
     else if (products[indexStart+12] !== undefined) indexEnd = indexStart + 12 - 1/* 뒤에 값이 12개 더 있으면 */
 
-    console.log('시작 : ' + indexStart + '번째 상품')
-    console.log('끝 : ' + indexEnd + '번째 상품')
+    // console.log('시작 : ' + indexStart + '번째 상품')
+    // console.log('끝 : ' + indexEnd + '번째 상품')
 
 
     for (let i = indexStart; i <= indexEnd; i++) {
@@ -148,107 +174,54 @@ function get12(index, products){
 }
 
 
-/* 선택된 필터 추출하기 */
 
+
+/* 필터 기능 */
 const AllFilter = document.querySelectorAll('.side-filter label input')
+AllFilter.forEach(filter => filter.addEventListener('click', function(){
+    
+    removeBox()
+    let products = filtering()
+    get12(0, products)
+    
+}))
 
-let checkList = []
-
-AllFilter.forEach((filter) => {
-    filter.addEventListener('change', function(){
-
-        let products = []
-
-        let data = this.getAttribute('data')
-
-        if (this.checked) checkList.push(data)
-        else if (!this.checked) {
-            let index = checkList.indexOf(data)
-            checkList.splice(index, 1)
-        }
-
-        let clothChecked = checkList.filter(check => check.includes('cloth'))
-        let priceChecked = checkList.filter(check => check.includes('price')) 
-        let colorChecked = checkList.filter(check => check.includes('color')) 
-
-        // console.log(`${clothChecked}, ${priceChecked}, ${colorChecked}`)
-
-        imgData.forEach((value) => {
-
-            let clothCheck /* 카테고리 분류 */
-            let colorCheck /* 색상 분류 */
-            let priceCheck /* 가격 분류 */
-
-            if (clothChecked.length == 0) clothCheck = true
-            else clothCheck = clothChecked.some((cloth) => value.category == cloth)
-
-            if (colorChecked.length == 0) colorCheck = true
-            else colorCheck = colorChecked.some((color) => value.color == color)
-
-            if(priceChecked.length == 0) priceCheck = true
-            else {
-                priceCheck = priceChecked.some((priceIdx) => {
-
-                    const p = value.price
-                    priceIdx = priceIdx.replace('price-', '')
-                    priceIdx = parseInt(priceIdx)
-
-                    let priceFilters = [
-                        p <= 50000,
-                        50000 <= p && p <= 150000,
-                        150000 <= p && p <= 250000,
-                        250000 <= p && p <= 500000,
-                        500000 < p]
-
-                    return priceFilters[priceIdx]
-
-                })
-            }
-
-            /* 모든 값이 true라면 최종적으로 필터링 통과됨 */
-            if (clothCheck && priceCheck && colorCheck) products.push(value)
-
-            sortProducts(products) /* products 정렬하기 */
-
-            console.log(products)
-        })
-    })
-})
-
-
-
-// let selectFilter = document.getElementById('productSelector')
-// selectFilter.addEventListener('change', function(){
-//     importData(categoryCheck, colorCheck, priceCheck)
-//     get12(0, products)
-// })
-
-// /* 기본 */
-
-// importData(categoryCheck, colorCheck, priceCheck)
-// get12(0, products)
-
-
-/* 초기화 */
+/* 필터 리셋 기능 */
 
 const filterReset = document.querySelector('.filter-category span.filter-reset')
+const colorCheckIcon = document.querySelectorAll('.side-filter .filter-color label i.fa-check')
 
 filterReset.addEventListener('click', function(){
-    filterClothes.forEach((checkbox) => checkbox.checked = false)
-    filterPrice.forEach((checkbox) => checkbox.checked = false)
-    filterColor.forEach((checkbox) => {
-        checkbox.checked = false
+    AllFilter.forEach((checkbox) => checkbox.checked = false)
+    colorCheckIcon.forEach(chkIcon => chkIcon.style.display = 'none') /* 이건 동적인 요소라서 수동으로 ... */
 
-        /* 이건 동적인 요소라서 수동으로 ... */
-        checkbox.parentElement.querySelector('i.fa-check').style.display = 'none'
-    })
-    // filterDiscount.forEach((checkbox) => checkbox.checked = false)
-
-    categoryCheck = []
-    colorCheck = []
-    priceCheck = []
-
-    importData(categoryCheck, colorCheck, priceCheck)
+    let products = imgData.filter(data => data.name == 'product-list')
+    removeBox()
     get12(0, products)
     
 })
+
+/* 정렬 기능 */
+let selectFilter = document.getElementById('productSelector')
+selectFilter.addEventListener('change', function(){
+    removeBox()
+    let products = filtering()
+    get12(0, products)
+})
+
+/* 첫 화면 */
+let products = imgData.filter(data => data.name == 'product-list')
+get12(0, products)
+
+/* 
+
+초기화는
+    let products = imgData.filter(data => data.name == 'product-list')
+    get12(0, products)
+
+필터, 정렬, 페이지네이션 사용은 필터와 연동되므로 필터링을 넣어줘야함
+    removeBox()
+    let products = filtering()
+    get12(0, products)
+
+*/
