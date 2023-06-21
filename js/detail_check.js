@@ -1,7 +1,7 @@
 import imgData from './data.js'
 
 /* 색상 선택 */
-let sortColor = document.querySelectorAll('.detail-info .color div')
+const sortColor = document.querySelectorAll('.detail-info .color div')
 const miniView = document.querySelectorAll('.detail-view .img-small div img')
 
 /* 초기화 */
@@ -11,7 +11,7 @@ sortColor.forEach((cloth) => {
 
     cloth.addEventListener('click', function(){
 
-        let color = this.getAttribute('data-color')
+        const color = this.getAttribute('data-color')
         let srcs
 
         for (let i = 0; i < imgData.length; i++) {
@@ -21,7 +21,7 @@ sortColor.forEach((cloth) => {
             }
         }
 
-        let thumbnail = document.querySelector('.detail-view .img-thumb img')
+        const thumbnail = document.querySelector('.detail-view .img-thumb img')
         thumbnail.setAttribute('src', srcs[0])
 
         miniView.forEach((value, index) => {
@@ -42,11 +42,10 @@ sizeBtns.forEach((btn)=>{
         sizeBtns.forEach(btn => btn.style.border = '3px solid #eee')
         btn.style.border = '3px solid gray'
     })
-    
 })
 
-let thumbnailSmall = document.querySelectorAll('.detail-view .img-small div img')
-let thumbnail = document.querySelector('.detail-view .img-thumb img')
+const thumbnailSmall = document.querySelectorAll('.detail-view .img-small div img')
+const thumbnail = document.querySelector('.detail-view .img-thumb img')
 
 
 thumbnailSmall.forEach((img) => {

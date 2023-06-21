@@ -7,7 +7,7 @@ window.onload = function() {
 
 const body = document.querySelector('body')
 
-let topBtn = document.createElement('div')
+const topBtn = document.createElement('div')
 topBtn.setAttribute('class', 'btn-top')
 topBtn.textContent = 'TOP'
 
@@ -29,12 +29,12 @@ $(topBtn).click(function(){
 
 /* 상단 검색창 */
 
-let searchIcon = document.querySelectorAll('.gnb ul li:nth-child(4) i')
+const searchIcon = document.querySelectorAll('.gnb ul li:nth-child(4) i')
 
-let icon1 = document.querySelector('.gnb .fa-search')
-let icon2 = document.querySelector('.gnb .fa-minus-square')
+const icon1 = document.querySelector('.gnb .fa-search')
+const icon2 = document.querySelector('.gnb .fa-minus-square')
 icon2.style.fontSize = '18px'
-let searchBar = document.querySelector('.gnb input')
+const searchBar = document.querySelector('.gnb input')
 
 searchIcon.forEach((i)=>{
     $(i).click(function(){
@@ -99,8 +99,8 @@ import imgData from './data.js'
 
 const category = document.querySelectorAll('.lnb .menuTop > li')
 
-let menuImage1 = document.querySelector('.menuVisual .menuImg1 img')
-let menuImage2 = document.querySelector('.menuVisual .menuImg2 img')
+const menuImage1 = document.querySelector('.menuVisual .menuImg1 img')
+const menuImage2 = document.querySelector('.menuVisual .menuImg2 img')
 
 let categoryImgs = []
 
@@ -110,8 +110,7 @@ for (let i = 1; i < imgData.length; i++) {
 
 category.forEach((value, index) => {
     value.addEventListener('mouseover', function(){
-        
-        
+
         menuImage1.setAttribute('src', categoryImgs[index*2])  /* 0 2 4 6 8 10 */
         menuImage2.setAttribute('src', categoryImgs[index*2+1])/* 1 3 5 7 9 11 */
     })
@@ -119,8 +118,8 @@ category.forEach((value, index) => {
 
 /* 로그인, 회원가입 새창 띄우기 */
 
-let login = document.querySelector('.gnb .btn-login')
-let join = document.querySelector('.gnb .btn-join')
+const login = document.querySelector('.gnb .btn-login')
+const join = document.querySelector('.gnb .btn-join')
 
 login.addEventListener('click', () => window.open('./login.html'))
 join.addEventListener('click', () => window.open('./signup.html'))

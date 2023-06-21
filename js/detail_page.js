@@ -10,7 +10,7 @@
 
 /* 오늘 날짜 추출 */
 function getToday(){
-    let dt = new Date()
+    const dt = new Date()
     let year = dt.getFullYear()
     let month = (dt.getMonth()+1).toString()
     month = month.length == 1 ? '0' + month : month
@@ -21,7 +21,7 @@ function getToday(){
 
 /* 리뷰 카운트 */
 function reviewCounting(){
-    let reviewCount = document.querySelector('.product-reviews > p > span:first-child')
+    const reviewCount = document.querySelector('.product-reviews > p > span:first-child')
     reviewCount.textContent = `전체 (총 ${document.querySelectorAll('.product-reviews .review').length}건)`
 }
 
@@ -29,8 +29,8 @@ function reviewCounting(){
 
 /* QNA 카운트 */
 function QNACounting(){
-    let howmanyQNA = document.querySelector('.qna-board > p')
-    let QNAposts = document.querySelectorAll('.qna-board .qna-post')
+    const howmanyQNA = document.querySelector('.qna-board > p')
+    const QNAposts = document.querySelectorAll('.qna-board .qna-post')
     howmanyQNA.textContent = `전체 (총 ${QNAposts.length}건)`
 }
 
@@ -42,7 +42,7 @@ const stars = document.querySelectorAll('.review-write p i')
 stars.forEach((star, index) => {
     star.addEventListener('click', function(){
 
-        let att = star.getAttribute('class')
+        const att = star.getAttribute('class')
 
         if (att == 'fa-star far'){ /* 빈 별 */
             
@@ -69,8 +69,8 @@ stars.forEach((star, index) => {
 
 /* 리뷰 작성 div 출력 */
 
-let reviewDisplayBtn = document.querySelector('.product-reviews .btn-review-write')
-let reviewWrite = document.querySelector('.product-reviews .review-write')
+const reviewDisplayBtn = document.querySelector('.product-reviews .btn-review-write')
+const reviewWrite = document.querySelector('.product-reviews .review-write')
 
 $(reviewDisplayBtn).click(function(){
     $(this).hide()
@@ -83,23 +83,23 @@ const reviewWriteBtn = document.querySelector('.review-write .review-submit')
 
 reviewWriteBtn.addEventListener('click', function(){
 
-    let reviewText = document.querySelector('.product-reviews .review-write input').value /* 리뷰 내용 */
-    let star = document.querySelector('.review-write p span').innerHTML /* 별점 */
-    let today = getToday() /* 현재 날짜 */
-    let yourID = 'fu****' /* 아이디 가져오기 (아무거나 일단..) */
+    const reviewText = document.querySelector('.product-reviews .review-write input').value /* 리뷰 내용 */
+    const star = document.querySelector('.review-write p span').innerHTML /* 별점 */
+    const today = getToday() /* 현재 날짜 */
+    const yourID = 'fu****' /* 아이디 가져오기 (아무거나 일단..) */
     
 
-    // let stars = document.querySelector('.review-write p i')
-    let blackStars = document.querySelectorAll('.review-write p i.fas')
+    // const stars = document.querySelector('.review-write p i')
+    const blackStars = document.querySelectorAll('.review-write p i.fas')
 
     if (reviewText.length < 10) alert('리뷰는 10자 이상 작성해주세요!')
     else if (blackStars.length == 0) alert('별점을 입력해 주세요!')
     else{
 
-        let review = document.createElement('div')
+        const review = document.createElement('div')
         review.setAttribute('class', 'review')
     
-        let reviewBox = document.querySelector('.reviews-wrap')
+        const reviewBox = document.querySelector('.reviews-wrap')
         
         review.innerHTML = `
             <span>${reviewText} <i class="fas fa-trash-alt"></i></span>
@@ -111,7 +111,7 @@ reviewWriteBtn.addEventListener('click', function(){
         reviewBox.appendChild(review)
 
         /* 리뷰 삭제 */
-        let deleteReview = reviewBox.querySelectorAll('i.fa-trash-alt')
+        const deleteReview = reviewBox.querySelectorAll('i.fa-trash-alt')
         deleteReview.forEach((del) => {
             del.addEventListener('click', function(){
                 let removeTargetReview = del.closest('.review')
@@ -120,13 +120,12 @@ reviewWriteBtn.addEventListener('click', function(){
                     removeTargetReview.remove()
                     reviewCounting()
                 }
-                
             })
         })
 
         /* 초기화 */
         document.querySelector('.product-reviews .review-write input').value = ''
-        let resetStars = document.querySelectorAll('.review-write p i')
+        const resetStars = document.querySelectorAll('.review-write p i')
         resetStars.forEach((star) => {
             star.classList.remove('fas')
             star.classList.add('far')
@@ -134,7 +133,7 @@ reviewWriteBtn.addEventListener('click', function(){
 
         alert('작성되었습니다!')
         
-        let reviewRecount = document.querySelector('.product-reviews > p > span:first-child')
+        const reviewRecount = document.querySelector('.product-reviews > p > span:first-child')
         reviewRecount.textContent = `전체 (총 ${document.querySelectorAll('.product-reviews .review').length}건)`
 
     }
@@ -142,7 +141,7 @@ reviewWriteBtn.addEventListener('click', function(){
 
 
 /* 열린 게시글 클릭 */
-let openablePosts = document.querySelectorAll('.qna-board .qna-post')
+const openablePosts = document.querySelectorAll('.qna-board .qna-post')
 
 openablePosts.forEach((post) => {
     $(post).click(function(){
@@ -154,22 +153,22 @@ openablePosts.forEach((post) => {
 /* 답변 작성 버튼 */
 
 function addModBtn(){
-    let answerPosts = document.querySelectorAll('.qna-board-wrap .answer p')
+    const answerPosts = document.querySelectorAll('.qna-board-wrap .answer p')
     answerPosts.forEach((post) => {
 
-    let isEmpty = post.querySelectorAll('i.fa-edit')
+    const isEmpty = post.querySelectorAll('i.fa-edit')
 
     if (isEmpty.length != 0) {
         return
     }
     
-    let editBtn = document.createElement('i')
+    const editBtn = document.createElement('i')
     editBtn.classList.add('fas')
     editBtn.classList.add('fa-edit')
 
     editBtn.addEventListener('click' , function(){
-        let p = this.parentElement
-        let adminZone = this.parentElement.parentElement.querySelector('.input-answer')
+        const p = this.parentElement
+        const adminZone = this.parentElement.parentElement.querySelector('.input-answer')
         
         p.style.display = 'none'
         adminZone.style.display = 'block'
@@ -184,27 +183,25 @@ function addModBtn(){
 }
 
 function addSubmitBtn(){
-    let answerBtn = document.querySelectorAll('.input-answer .answer-submit')
+    const answerBtn = document.querySelectorAll('.input-answer .answer-submit')
     answerBtn.forEach((btn) => {
-    btn.addEventListener('click', function(){
-        let textBox = this.previousElementSibling
-        let p = this.parentElement.previousElementSibling
-        let span = this.parentElement.previousElementSibling.querySelector('span')
-        span.textContent = textBox.value
-        p.style.display = 'block'
-        this.parentElement.style.display = 'none'
+        btn.addEventListener('click', function(){
+            const textBox = this.previousElementSibling
+            const p = this.parentElement.previousElementSibling
+            const span = this.parentElement.previousElementSibling.querySelector('span')
 
-        let father = this.parentElement.parentElement
-        console.log(father)
-        father.classList.remove('pending')
+            span.textContent = textBox.value
+            p.style.display = 'block'
+            this.parentElement.style.display = 'none'
 
-        let changeStatus = father.previousElementSibling.querySelector('.status')
-        changeStatus.textContent = '답변완료'
+            const father = this.parentElement.parentElement
+            father.classList.remove('pending')
 
-
-        
+            const changeStatus = father.previousElementSibling.querySelector('.status')
+            changeStatus.textContent = '답변완료'
+            
+            })
     })
-})
 }
 
 
@@ -213,7 +210,7 @@ const questionBtn = document.querySelector('.qna .btn-question')
 const questionWrite = document.querySelector('.qna .question-write')
 const questionTextBox = questionWrite.querySelector('input.answer')
 const questionSubmit = questionWrite.querySelector('.question-submit')
-let questionCheck = questionWrite.querySelector('.private-check input')
+const questionCheck = questionWrite.querySelector('.private-check input')
 
 /* 문의하기 버튼 */
 questionBtn.addEventListener('click', function(){
@@ -223,10 +220,10 @@ questionBtn.addEventListener('click', function(){
 
 /* 본격적으로 문의하기 */
 questionSubmit.addEventListener('click', function(){
-    let private = document.querySelector('.private-check input').checked ? '<i class="fas fa-lock"></i>' : ''
-    let qText = questionTextBox.value
-    let today = getToday()
-    let yourID = 'fu****' /* 아디는 일단 아무거나 */
+    const private = document.querySelector('.private-check input').checked ? '<i class="fas fa-lock"></i>' : ''
+    const qText = questionTextBox.value
+    const today = getToday()
+    const yourID = 'fu****' /* 아디는 일단 아무거나 */
 
 
     const deleteQuestion = document.createElement('i')

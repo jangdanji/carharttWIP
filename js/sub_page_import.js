@@ -3,12 +3,12 @@ import imgData from "./data.js"
 /* sub page 상품 import */
 
 function removeBox(){
-    let boxRemoveTarget = document.querySelectorAll('.products .product-list .product-box')
+    const boxRemoveTarget = document.querySelectorAll('.products .product-list .product-box')
     boxRemoveTarget.forEach((value) => value.remove())
 }
 
 function comma(price){
-    let result = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const result = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     return result
 }
 
@@ -24,9 +24,9 @@ function filtering(){ /* 필터 */
         if (filter.checked) checkList.push(filter.getAttribute('data'))
     })
 
-    let clothChecked = checkList.filter(check => check.includes('cloth'))
-    let priceChecked = checkList.filter(check => check.includes('price')) 
-    let colorChecked = checkList.filter(check => check.includes('color')) 
+    const clothChecked = checkList.filter(check => check.includes('cloth'))
+    const priceChecked = checkList.filter(check => check.includes('price')) 
+    const colorChecked = checkList.filter(check => check.includes('color')) 
 
     const productData = imgData.filter(data => data.name == 'product-list')
 
@@ -46,16 +46,16 @@ function filtering(){ /* 필터 */
         else {
             priceCheck = priceChecked.some((priceIdx) => {
 
-                const p = value.price
+                const price = value.price
                 priceIdx = priceIdx.replace('price-', '')
                 priceIdx = parseInt(priceIdx)
 
                 let priceFilters = [
-                    p <= 50000,
-                    50000 <= p && p <= 150000,
-                    150000 <= p && p <= 250000,
-                    250000 <= p && p <= 500000,
-                    500000 < p]
+                    price <= 50000,
+                    50000 <= price && price <= 150000,
+                    150000 <= price && price <= 250000,
+                    250000 <= price && price <= 500000,
+                    500000 < price]
 
                 return priceFilters[priceIdx]
 
@@ -66,7 +66,7 @@ function filtering(){ /* 필터 */
         if (clothCheck && priceCheck && colorCheck) products.push(value)
     })
 
-    console.log(products) /* 최종 정렬/필터 결과물 */
+    // console.log(products) /* 최종 정렬/필터 결과물 */
 
     return products
 
@@ -75,7 +75,7 @@ function filtering(){ /* 필터 */
 function get12(index, products){ /* 12개 뽑기 */
 
     /* 정렬하기 */
-    let selectFilter = document.getElementById('productSelector')
+    const selectFilter = document.getElementById('productSelector')
     if (selectFilter.value == "newest") products.sort((a, b) => a.productNum - b.productNum)
     else if (selectFilter.value == "hot") products.sort((a, b) => a.sale - b.sale)
     else if (selectFilter.value == "price-low") products.sort((a, b) => a.price - b.price)
@@ -84,19 +84,19 @@ function get12(index, products){ /* 12개 뽑기 */
     /* 페이지 초기화 */
     const pagenation = document.querySelector('.products .pagination')
 
-    let resetPage = pagenation.querySelectorAll('span')
+    const resetPage = pagenation.querySelectorAll('span')
     resetPage.forEach((page) => pagenation.removeChild(page))
 
     /* products 갯수 받아서 페이지 만들기 */
-    let pages = Math.ceil(products.length / 12);
+    const pages = Math.ceil(products.length / 12);
 
     for (let i = 1; i <= pages; i++) {
-        let page = document.createElement('span')
+        const page = document.createElement('span')
         page.textContent = i
         pagenation.appendChild(page)
     }
 
-    let paginationSpan = document.querySelectorAll('.pagination span')
+    const paginationSpan = document.querySelectorAll('.pagination span')
     
     try{
         paginationSpan.forEach((span) => span.classList.remove('active'))
@@ -115,7 +115,7 @@ function get12(index, products){ /* 12개 뽑기 */
     let productList = document.querySelector('.products .product-list')
 
     if (products.length == 0) {
-        let nothing = document.createElement('div')
+        const nothing = document.createElement('div')
             nothing.setAttribute('class', 'product-box')
             nothing.style.width = '100%'
             nothing.style.textAlign = 'center'
@@ -139,7 +139,7 @@ function get12(index, products){ /* 12개 뽑기 */
 
         // console.log(i)
 
-        let product_box = document.createElement('div')
+        const product_box = document.createElement('div')
         product_box.setAttribute('class', 'product-box')
         
         product_box.innerHTML = `
@@ -202,7 +202,7 @@ filterReset.addEventListener('click', function(){
 })
 
 /* 정렬 기능 */
-let selectFilter = document.getElementById('productSelector')
+const selectFilter = document.getElementById('productSelector')
 selectFilter.addEventListener('change', function(){
     removeBox()
     let products = filtering()
