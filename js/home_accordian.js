@@ -11,43 +11,14 @@ for (let i = 0; i < accProducts.length; i++){
     /* 마우스 오버 */
     target.addEventListener('mouseover', function(){
         accProducts.forEach((value) => {
-            if (value === target) {
-                value.style.width = '825px'
-            } else {
-                value.style.width = '202.5px'
-            }
+            if (value === target) value.style.width = '825px'
+            else value.style.width = '202.5px'
         })
     })
 
     /* 마우스 아웃 */
     target.addEventListener('mouseout', function(){
-        accProducts.forEach((value) => {
-            value.style.width = '405px'
-        })
-    })
-}
-
-/* md pick 마우스 호버 */
-for (let i = 0; i < pickProducts.length; i++){
-    pickProducts[i].addEventListener('mouseover', function(){
-        let hover = pickProducts[i]
-
-        pickProducts.forEach((value) => {
-            if (value === hover) {
-                value.style.width = '615px'
-            } else {
-                value.style.width = '195px'
-                value.firstElementChild.style.filter = 'brightness(20%)'
-            }
-        })
-
-    })
-    pickProducts[i].addEventListener('mouseout', function(){
-        pickProducts.forEach((value) => {
-            value.style.width = '300px'
-            value.firstElementChild.style.filter = 'brightness(100%)'
-
-        })
+        accProducts.forEach((value) => value.style.width = '405px')
     })
 }
 
@@ -61,14 +32,8 @@ hoverContents.forEach((content, lookbookIndex) => {
 
     content.addEventListener('mouseover', function(event){
 
-        // console.log(event.target)
-        
         let a = Array.from(content.children)
-        // a.pop()
-        // console.log(a)
         a = a.indexOf(event.target.parentElement)
-
-        // console.log(a)
 
         /* 백그라운드 밝기 */
         bgImg.classList.add('gangjo-off')
@@ -77,16 +42,12 @@ hoverContents.forEach((content, lookbookIndex) => {
         /* 누끼 이미지 밝기 */
         imgs.forEach((img, imgIdx) => {
 
-            // console.log(imgIdx)
-            // console.log(a)
-            
             if (imgIdx === a) {
                 
                 img.classList.add('gangjo-on')
                 img.classList.remove('gangjo-off')
             
-
-                /* 하는 김에 상품정보도 넣기 */
+                /* 상품정보 */
                 let productInfo = []
 
                 for (let i of imgData) {
@@ -100,32 +61,13 @@ hoverContents.forEach((content, lookbookIndex) => {
                 info.querySelector('.productPrice').textContent = productInfo[a].price
                 info.querySelector('.productDetails').textContent = productInfo[a].description
 
-                info.addEventListener('mouseover', function(){
-                    // alert(123)
-                    // img.classList.add('gangjo-on')
-                    // img.classList.remove('gangjo-off')
-                })
-
             }
-            else if (a === -1) {
-                true
-
-
-
-
-            }
-            
+            else if (a === -1) true
             else if (imgIdx !== a && a !== -1) {
                 img.classList.add('gangjo-off')
                 img.classList.remove('gangjo-on')
             }
         })
-
-        // /* 상품 설명 불러오기 */
-        // let yourContent = content.querySelector('bright-100')
-
-        // /* 호버한 사진의 상품 인덱스 찾기 */
-
 
     })
 
@@ -140,6 +82,26 @@ hoverContents.forEach((content, lookbookIndex) => {
             img.classList.remove('gangjo-on')
         })
     })
-
-
 })
+
+
+/* md pick 마우스 호버 */
+for (let i = 0; i < pickProducts.length; i++){
+    pickProducts[i].addEventListener('mouseover', function(){
+        let hover = pickProducts[i]
+
+        pickProducts.forEach((value) => {
+            if (value === hover) value.style.width = '615px'
+            else {
+                value.style.width = '195px'
+                value.firstElementChild.style.filter = 'brightness(20%)'
+            }
+        })
+    })
+    pickProducts[i].addEventListener('mouseout', function(){
+        pickProducts.forEach((value) => {
+            value.style.width = '300px'
+            value.firstElementChild.style.filter = 'brightness(100%)'
+        })
+    })
+}

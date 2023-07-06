@@ -1,5 +1,7 @@
 /* 회원가입 검사 */
 
+const allInput = document.querySelectorAll('label.box input')
+
 const id = document.getElementById('idBox')
 const pw = document.getElementById('pwBox')
 const pwChk = document.getElementById('pwChkBox')
@@ -8,50 +10,49 @@ const tel = document.querySelectorAll('.telBoxWrap .telBox')
 const addr = document.getElementById('addrBox')
 const signupBtn = document.querySelector('button.commitBtn')
 
-const allInput = document.querySelectorAll('label.box input')
+function checking (element, text, color, alertSpan=element.previousElementSibling) {
+    if (element.value == '') return
 
-id.addEventListener('change', function(){
+    alertSpan.textContent = text
+    alertSpan.style.color = color
+    alertSpan.style.float = 'right'
+    alertSpan.style.fontSize = '12px'
+
+    if (color=='red') element.select()
+}
+
+id.addEventListener('change', function(){ /* 아이디 */
     if (id.value.length <= 4) {
         checking(this, '아이디는 4자리 이상으로 만들어 주세요!', 'red')
-    } else {
-        checking(this, '멋진 아이디네요!', '#545ADC')
-    }
+    } else checking(this, '멋진 아이디네요!', '#545ADC')
 })
 
-pw.addEventListener('change', function(){
+pw.addEventListener('change', function(){ /* 비밀번호 */
     if (pw.value.length <= 8 || pw.value.length >= 16) {
         checking(this, '8~16자리 비밀번호를 만들어 주세요!', 'red')
-    } else {
-        checking(this, '올바른 비밀번호 입니다.', '#545ADC')
-    }
+    } else checking(this, '올바른 비밀번호 입니다.', '#545ADC')
 })
 
-pwChk.addEventListener('change', function(){
+pwChk.addEventListener('change', function(){ /* 비밀번호 확인 */
     if (pw.value != pwChk.value) {
         checking(this, '비밀번호가 일치하지 않아요!', 'red')
-    } else {
-        checking(this, '비밀번호가 일치합니다!', '#545ADC')
-    }
+    } else checking(this, '비밀번호가 일치합니다!', '#545ADC')
 })
 
-tel[1].addEventListener('input', function(){
+tel[1].addEventListener('input', function(){ /* 전화번호 둘째칸 */
     if (this.value.length >= 4) tel[2].focus()
 })
 
 tel[1].addEventListener('change', function(){
     if (this.value.length <= 3) {
         checking(this, '전화번호 4자리를 올바르게 입력해주세요!', 'red', this.parentElement.parentElement.querySelector('.textAlert'))
-    } else {
-        checking(this, '', '#545ADC', this.parentElement.parentElement.querySelector('.textAlert'))
-    }
+    } else checking(this, '', '#545ADC', this.parentElement.parentElement.querySelector('.textAlert'))
 })
 
-tel[2].addEventListener('change', function(){
+tel[2].addEventListener('change', function(){ /* 전화번호 셋째칸 */
     if (this.value.length <= 3) {
         checking(this, '전화번호 4자리를 올바르게 입력해주세요!', 'red', this.parentElement.parentElement.querySelector('.textAlert'))
-    } else {
-        checking(this, '', '#545ADC', this.parentElement.parentElement.querySelector('.textAlert'))
-    }
+    } else checking(this, '', '#545ADC', this.parentElement.parentElement.querySelector('.textAlert'))
 })
 
 signupBtn.addEventListener('click', function(){
@@ -72,17 +73,6 @@ signupBtn.addEventListener('click', function(){
     window.location.href = './login.html'
     
 })
-
-function checking (element, text, color, alertSpan=element.previousElementSibling) {
-    if (element.value == '') return
-
-    alertSpan.textContent = text
-    alertSpan.style.color = color
-    alertSpan.style.float = 'right'
-    alertSpan.style.fontSize = '12px'
-
-    if (color=='red') element.select()
-}
 
 /* 약관 동의 */
 

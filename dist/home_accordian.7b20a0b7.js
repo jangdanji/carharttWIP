@@ -588,18 +588,14 @@ var _loop = function _loop() {
   /* 마우스 오버 */
   target.addEventListener('mouseover', function () {
     accProducts.forEach(function (value) {
-      if (value === target) {
-        value.style.width = '825px';
-      } else {
-        value.style.width = '202.5px';
-      }
+      if (value === target) value.style.width = '825px';else value.style.width = '202.5px';
     });
   });
 
   /* 마우스 아웃 */
   target.addEventListener('mouseout', function () {
     accProducts.forEach(function (value) {
-      value.style.width = '405px';
+      return value.style.width = '405px';
     });
   });
 };
@@ -612,9 +608,7 @@ var _loop2 = function _loop2(_i) {
   pickProducts[_i].addEventListener('mouseover', function () {
     var hover = pickProducts[_i];
     pickProducts.forEach(function (value) {
-      if (value === hover) {
-        value.style.width = '615px';
-      } else {
+      if (value === hover) value.style.width = '615px';else {
         value.style.width = '195px';
         value.firstElementChild.style.filter = 'brightness(20%)';
       }
@@ -636,14 +630,8 @@ hoverContents.forEach(function (content, lookbookIndex) {
   var bgImg = content.parentElement.querySelector('img.bgImg');
   var info = content.querySelector('.productInfo');
   content.addEventListener('mouseover', function (event) {
-    // console.log(event.target)
-
     var a = Array.from(content.children);
-    // a.pop()
-    // console.log(a)
     a = a.indexOf(event.target.parentElement);
-
-    // console.log(a)
 
     /* 백그라운드 밝기 */
     bgImg.classList.add('gangjo-off');
@@ -651,14 +639,11 @@ hoverContents.forEach(function (content, lookbookIndex) {
 
     /* 누끼 이미지 밝기 */
     imgs.forEach(function (img, imgIdx) {
-      // console.log(imgIdx)
-      // console.log(a)
-
       if (imgIdx === a) {
         img.classList.add('gangjo-on');
         img.classList.remove('gangjo-off');
 
-        /* 하는 김에 상품정보도 넣기 */
+        /* 상품정보 */
         var productInfo = [];
         var _iterator = _createForOfIteratorHelper(_data.default),
           _step;
@@ -678,14 +663,7 @@ hoverContents.forEach(function (content, lookbookIndex) {
         info.querySelector('.productNameKR').textContent = productInfo[a].productKR;
         info.querySelector('.productPrice').textContent = productInfo[a].price;
         info.querySelector('.productDetails').textContent = productInfo[a].description;
-        info.addEventListener('mouseover', function () {
-          // alert(123)
-          // img.classList.add('gangjo-on')
-          // img.classList.remove('gangjo-off')
-        });
-      } else if (a === -1) {
-        true;
-      } else if (imgIdx !== a && a !== -1) {
+      } else if (a === -1) true;else if (imgIdx !== a && a !== -1) {
         img.classList.add('gangjo-off');
         img.classList.remove('gangjo-on');
       }
@@ -732,7 +710,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60834" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54983" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
